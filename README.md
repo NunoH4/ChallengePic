@@ -1,24 +1,39 @@
-# README
+# PicWalk
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+与えられたお題に沿った写真を投稿し、他のユーザーと共有できるコミュニティサイト
 
-* Ruby version
+### テーマを選んだ理由
+私は色々な所を散策するのが好きなのですが、見所が少ない所に行ってしまうと少々退屈に感じてしまう事がありました。  
+そこで、「お題に沿った写真を撮る」という目的を持つことにより、何気ない風景でも楽しみを見出しながら散策することができるのではないかと考えました。  
+また健康やダイエットのため義務的にウォーキングをしている人にとっても、見慣れた風景を新たな視点から見るきっかけになり、モチベーションの向上にも繋がるのではないかと考え、このテーマにしました。
 
-* System dependencies
+### ターゲットユーザ
+- 散策することが好きな人
+- ウォーキングを継続することが難しく困っている人
+- 写真を撮る・見ることが好きな人
 
-* Configuration
+### 主な利用シーン
+- 散策・ウォーキング中に目的が欲しい時
+- 自分が撮影した写真を他のユーザーにも見てほしい時
+- 同じお題に基づいて撮影した他のユーザーの写真を見たい時
 
-* Database creation
+## 設計書
+後ほど作成予定
 
-* Database initialization
+## 開発環境
+- OS：Microsoft Windows
+- 言語：HTML, CSS, JavaScript, Ruby, SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
+## 使用素材
+フリーアイコン素材として以下を使用しています
+- Font Awesome (https://fontawesome.com/)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+フリーイラスト素材として以下を使用しています
+- Isometric (https://isometric.online/)
+- unDraw (https://undraw.co/)
