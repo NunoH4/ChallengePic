@@ -1,4 +1,4 @@
-# PicWalk
+# ChallengePic
 
 ## サイト概要
 
