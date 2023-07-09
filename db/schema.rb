@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_08_060743) do
+ActiveRecord::Schema.define(version: 2023_07_09_070540) do
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 2023_07_08_060743) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "challenge_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
