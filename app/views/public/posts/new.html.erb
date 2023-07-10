@@ -18,19 +18,28 @@
   </div>
 
   <%= form_with model: @post do |f| %>
-  <div class="form-group">
-    <label for="image">写真</label>
-    <%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %>
-  </div>
+    <div class="form-group">
+      <label for="image">写真</label>
+      <%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %>
+    </div>
+    
+    <div class="form-group">
+      <label for="body">説明</label>
+      <%= f.text_area :body, class: 'form-control post_body' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit "投稿する", class: 'btn btn-success' %>
+    </div>
   
-  <div class="form-group">
-    <label for="body">説明</label>
-    <%= f.text_area :body, class: 'form-control post_body' %>
-  </div>
+    <label for="tag">タグ(,で区切ると複数タグ登録できます)</label>
+    <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
   
-  <div class="form-group">
-    <%= f.submit "投稿する", class: 'btn btn-success' %>
-  </div>
+    <% if @post.new_record? %>
+      <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+    <% else %>
+      <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+    <% end %>
   
   <% end %>
   
