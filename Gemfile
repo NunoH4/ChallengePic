@@ -59,3 +59,4 @@ gem 'devise'
 gem 'faker'
 gem 'gimei'
 gem 'rails-i18n'
+gem 'whenever', require: false
