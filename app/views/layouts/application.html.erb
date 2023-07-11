@@ -11,21 +11,31 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-      <header>
-        <% if member_signed_in? %>
-          <li>
-            <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "新規登録", new_member_registration_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_member_session_path %>
-          </li>
+<body>
+  <header>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="navbar-brand">
+        <%= link_to root_path do %>
+          <%= image_tag 'logo.png', class: 'logo', width: '150' %>
         <% end %>
-      </header>
+        <span class="small">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
+      </div>
+
+      <ul class="navbar-nav ml-auto">
+        <% if member_signed_in? %>
+          <li class="nav-link"><%= link_to 'ガイドライン',  homes_guideline_path %></li>
+          <li class="nav-link"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+        <% else %>
+          <li class="nav-link"><%= link_to 'ガイドライン',  homes_guideline_path %></li>
+          <li class="nav-link"><%= link_to '新規登録', new_member_registration_path %></li>
+          <li class="nav-link"><%= link_to 'ログイン', new_member_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!--<p id="notice"><%= notice %></p>-->
     <%= yield %>
-  </body>
+  </main>
+</body>
 </html>
