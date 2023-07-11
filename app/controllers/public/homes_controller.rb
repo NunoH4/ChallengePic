@@ -21,13 +21,6 @@ class Public::HomesController < ApplicationController
     @daily_theme = Faker::Color.color_name
   end
 
-  def top
-    #お題を表示する際、まずキャッシュをチェックする。キャッシュが存在する場合はそれを使用し、存在しない場合は新たなお題を生成する。その際、現在の日付をキーとしてテーマをキャッシュする。
-    @daily_theme = Rails.cache.fetch("daily_theme/#{Date.current.to_s}", expires_in: 24.hours) do
-      Faker::Color.name
-    end
-  end
-
   def guideline
   end
 end
