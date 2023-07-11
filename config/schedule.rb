@@ -1,12 +1,12 @@
 # 毎日4:30に実行するようスケジュール
-# every 1.day, at: '4:30 am' do
-#   rake "update_challenge:challenges"
-# end
-
-# 毎時実行するようスケジュール
-every :hour do
+every 1.day, at: '4:30 am' do
   rake "update_challenge:challenges"
 end
+
+# 毎時実行するようスケジュール
+# every :hour do
+#   rake "update_challenge:challenges"
+# end
 
 
 

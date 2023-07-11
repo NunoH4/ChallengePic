@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   
   def new
+    @theme = Challenge.last&.theme
     @post = Post.new
   end
 
@@ -44,6 +45,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body)
+    params.require(:post).permit(:image, :body, :challenge_id)
   end
 end

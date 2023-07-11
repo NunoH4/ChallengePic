@@ -18,7 +18,8 @@ class Public::HomesController < ApplicationController
 
 
   def top
-    @theme = Challenge.last&.theme || "No theme today"
+    @theme = Challenge.last&.theme
+    # @theme = Challenge.last&.theme || "No theme today"
   end
 
   def guideline

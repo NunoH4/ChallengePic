@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     get 'homes/guideline' => 'homes#guideline'
 
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update]
-    get "search_tag" => "posts#search_tag"
+    # get "search_tag" => "posts#search_tag"
   end
 end
