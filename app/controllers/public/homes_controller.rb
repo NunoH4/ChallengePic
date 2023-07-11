@@ -18,7 +18,7 @@ class Public::HomesController < ApplicationController
 
 
   def top
-    @daily_theme = Faker::Color.color_name
+    @theme = Challenge.last&.theme || "No theme today"
   end
 
   def guideline
