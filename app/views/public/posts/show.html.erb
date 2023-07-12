@@ -1,12 +1,16 @@
-<!--<h1>Public::Posts#show</h1>-->
-<!--<p>Find me in app/views/public/posts/show.html.erb</p>-->
-
-<div class='container'>
-  <div class='row'>
-    <h1 class="px-3 mx-auto">投稿詳細</h1>
-  </div>
-  
-  <div class='row'>
-    <div></div>
-  </div>
+<div class='container mt-5'>
+    <div class='row d-flex justify-content-center'>
+      <%= image_tag @post.image, class:""; %>
+    </div>
+    <div class='row my-3 d-flex align-items-center justify-content-center flex-column'>
+      <h4>テーマ：<%= @post.theme %></h4>
+      <p><%= @post.body %></p>
+      <p><%= @post.member.name %></p>
+    </div>
+    <div class='row d-flex justify-content-center'>
+      <% if @post.member == current_member %>
+        <%= link_to '編集する', edit_post_path(@post), class: "" %>　　
+        <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: ""%>
+      <% end %>
+    </div>
 </div>

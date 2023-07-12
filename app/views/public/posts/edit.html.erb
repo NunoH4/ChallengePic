@@ -1,2 +1,31 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class='container mt-5'>
+
+  <div class='row d-flex justify-content-center'>
+    <%= image_tag @post.image, class:"mt-3"; %>
+  </div>
+  <div class="text-center">
+    テーマ: <%= @post.theme %>
+  </div>
+  
+  <%= form_with model: @post do |f| %>
+  <div class="form-group">
+    <label for="body">説明</label>
+    <%= f.text_area :body, class: 'form-control post_body' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit "更新する", class: 'btn btn-success' %>
+  </div>
+
+  <!--<label for="tag">タグ(,で区切ると複数タグ登録できます)</label>-->
+  <!--<%= f.text_field :name, value: @tag_list, class: 'form-control' %>-->
+
+  <!--<% if @post.new_record? %>-->
+  <!--  <%= f.submit '新規作成', class: "btn btn-success mt-4" %>-->
+  <!--<% else %>-->
+  <!--  <%= f.submit '更新する', class: "btn btn-success mt-4" %>-->
+  <!--<% end %>-->
+  
+  <% end %>
+  
+</div>

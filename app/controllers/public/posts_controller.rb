@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   
   def new
-    @theme = Challenge.last&.theme
+    @daily_theme = Challenge.last&.theme
     @post = Post.new
   end
 
@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to posts_path(@post), notice: "You have updated post successfully."
+      redirect_to post_path(@post), notice: "You have updated post successfully."
     else
       render :edit
     end
@@ -47,6 +47,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body, :theme)
+    params.require(:post).permit(:image, :body)
   end
 end
