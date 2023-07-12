@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
     @post.member_id = current_member.id
     @post.theme = Challenge.last&.theme
     if @post.save
-      redirect_to posts_path, notice:'投稿が完了しました'
+      redirect_to post_path(@post), notice:'投稿が完了しました'
     else
       puts @post.errors.full_messages.to_s
       render :new
