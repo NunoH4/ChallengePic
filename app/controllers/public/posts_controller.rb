@@ -16,9 +16,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
+    @post.theme = Challenge.last&.theme
     if @post.save
       redirect_to posts_path, notice:'投稿が完了しました'
     else
+      puts @post.errors.full_messages.to_s
       render :new
     end
   end
@@ -45,6 +47,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body, :challenge_id)
+    params.require(:post).permit(:image, :body, :theme)
   end
 end

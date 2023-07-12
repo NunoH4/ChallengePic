@@ -18,7 +18,8 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td><%= image_tag post_image.get_image(100,100), class:"mt-3"; %></td>
+            <td><%= image_tag post.image, class:"mt-3"; %></td>
+            <td><%= post.theme %></td>
             <td><%= post.body %></td>
             <td><%= link_to 'Show', post_path(post.id) %></td>
             <td><%= link_to 'Edit', edit_post_path(post.id) %></td>

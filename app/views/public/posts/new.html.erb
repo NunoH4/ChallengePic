@@ -14,7 +14,7 @@
   </div>
   
   <div class='row'>
-    <h2 class="px-3 mx-auto"><%= @theme %></h2>
+    <h2 class="px-3 mx-auto"><%= @daily_theme %></h2>
   </div>
 
   <%= form_with model: @post do |f| %>
@@ -32,14 +32,14 @@
       <%= f.submit "投稿する", class: 'btn btn-success' %>
     </div>
   
-    <label for="tag">タグ(,で区切ると複数タグ登録できます)</label>
-    <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
+    <!--<label for="tag">タグ(,で区切ると複数タグ登録できます)</label>-->
+    <!--<%= f.text_field :name, value: @tag_list, class: 'form-control' %>-->
   
-    <% if @post.new_record? %>
-      <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
-    <% else %>
-      <%= f.submit '更新する', class: "btn btn-success mt-4" %>
-    <% end %>
+    <!--<% if @post.new_record? %>-->
+    <!--  <%= f.submit '新規作成', class: "btn btn-success mt-4" %>-->
+    <!--<% else %>-->
+    <!--  <%= f.submit '更新する', class: "btn btn-success mt-4" %>-->
+    <!--<% end %>-->
   
   <% end %>
   
