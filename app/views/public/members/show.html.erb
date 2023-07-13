@@ -1,2 +1,28 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class='container mt-5'>
+  <div class='row d-flex justify-content-center'>
+    <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" if @member.profile_image.attached? %>
+    <h3><%= @member.name %></h3>
+  </div>
+  
+  <div>
+    <% if @member == current_member %>
+      <%= link_to edit_member_path(@member.id), class: "" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    <% end %>
+  </div>
+   
+  <div class='row d-flex justify-content-center'>
+    <h5>投稿</h5>
+  </div>
+  
+  <div class="row">
+    <% @post.each do |post| %>
+      <div class="col-md-4">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, class: "img-fluid mt-3" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
