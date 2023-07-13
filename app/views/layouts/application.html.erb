@@ -23,16 +23,61 @@
 
       <ul class="navbar-nav ml-auto">
         <% if member_signed_in? %>
-          <li class="nav-link"><%= link_to '過去の投稿', posts_path %></li>
-          <li class="nav-link"><%= link_to '投稿する',  new_post_path %></li>
-          <li class="nav-link"><%= link_to 'マイページ', member_path(current_member.id) %></li>
-          <li class="nav-link"><%= link_to 'ガイドライン', homes_guideline_path %></li>
-          <li class="nav-link"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+          <li class="nav-link">
+            <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
+            <i class="far fa-images"></i>
+            過去の投稿
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to new_post_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-paper-plane"></i>
+            投稿する
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to member_path(current_member.id), class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-user"></i>
+            マイページ
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to homes_guideline_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-book"></i>
+            ガイドライン
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to destroy_member_session_path, method: :delete, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-sign-out-alt"></i>
+            ログアウト
+            <% end %>
+          </li>
         <% else %>
-          <li class="nav-link"><%= link_to '過去の投稿',  posts_path %></li>
-          <li class="nav-link"><%= link_to 'ガイドライン', homes_guideline_path %></li>
-          <li class="nav-link"><%= link_to '新規登録', new_member_registration_path %></li>
-          <li class="nav-link"><%= link_to 'ログイン', new_member_session_path %></li>
+          <li class="nav-link">
+            <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
+            <i class="far fa-images"></i>
+            過去の投稿
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to homes_guideline_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-book"></i>
+            ガイドライン
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to new_member_registration_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-user-plus"></i>
+            新規登録
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to new_member_session_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-sign-in-alt"></i>
+            ログイン
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </nav>
