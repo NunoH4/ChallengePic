@@ -60,3 +60,4 @@ gem 'faker'
 gem 'gimei'
 gem 'rails-i18n'
 gem 'whenever', require: false
+gem "image_processing", ">= 1.2"
