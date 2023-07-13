@@ -6,6 +6,7 @@
       <h4>THEME：<%= @post.theme %></h4>
       <p><%= @post.body %></p>
     </div>
+    
     <div class="row d-flex align-items-center justify-content-center flex-column">
       <%= image_tag @post.member.profile_image.variant(resize: '80x80'), class: "rounded-circle" if @post.member.profile_image.attached? %>
       <p><%= @post.member.name %></p>
@@ -15,5 +16,37 @@
         <%= link_to '編集する', edit_post_path(@post), class: "btn btn-outline-secondary rounded-pill" %>　　
         <%= link_to '削除する', @post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-secondary rounded-pill"%>
       <% end %>
+    </div>
+    
+    <div class="row">
+      <div class="col-6">
+        <% @post.post_comments.each do |post_comment| %>
+          <div>
+            <%= image_tag post_comment.member.profile_image.variant(resize: '40x40'), class: "rounded-circle" if post_comment.member.profile_image.attached? %>
+            <%= post_comment.member.name %>
+          </div>
+          <div>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          </div>
+          <p>
+            <% if post_comment.member == current_member %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary rounded-pill" %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+      
+      <div class="col-6">
+        <%= form_with model: [@post, @post_comment] do |f| %>
+        <div class="form-group">
+          <label for="comment"><i class="far fa-comment"></i> コメント</label>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: 'form-control comment' %>
+        </div>
+
+        <div class="form-group text-right">
+          <%= f.submit "投稿する", class: 'btn btn-outline-secondary rounded-pill' %>
+        </div>
+        <% end %>
+      </div>
     </div>
 </div>
