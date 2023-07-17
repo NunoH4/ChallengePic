@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" if @member.profile_image.attached? %>
+  </div>
+  
+  <div class="row mt-1 d-flex justify-content-center">
+    <h3><%= @member.name %></h3>
+  </div>
+  
+  <div class="row d-flex justify-content-center">
+    <p><%= @member.introduction %></p>
+  </div>
+  
+  <div class="row justify-content-end">
+    <% if @member == current_member %>
+      <%= link_to edit_member_path(@member.id), class: "text-body" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    <% end %>
+  </div>
+   
+  <div class="row mt-5 d-flex justify-content-center">
+    <p><i class="far fa-images"></i>投稿</p>
+  </div>
+  
+  <div class="row">
+    <% @post.each do |post| %>
+      <div class="col-md-4">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, class: "img-fluid mt-3" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

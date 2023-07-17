@@ -18,5 +18,9 @@ module ChallengePic
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    Rails.application.config.i18n.default_locale = :ja
+    Faker::Config.locale = :ja
+    config.time_zone = 'Asia/Tokyo'
+    config.active_record.default_timezone = :local
   end
 end
