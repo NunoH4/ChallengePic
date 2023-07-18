@@ -16,7 +16,7 @@
   <!--タグリスト-->
   <div>
     <% @tag_list.each do |list|%>
-      <%= list.name %><%= "(#{list.posts.count})" %>
+      <%=link_to list.name,search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
     <% end %>
   </div>
 

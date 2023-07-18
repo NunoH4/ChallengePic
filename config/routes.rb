@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
     end
-    # get "search_tag" => "posts#search_tag"
+    get "search_tag" => "posts#search_tag"
   end
 end

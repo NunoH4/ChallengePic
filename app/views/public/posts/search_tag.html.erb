@@ -1,0 +1,24 @@
+<div class='container mt-5'>
+  <div class='row'>
+    <h1 class="px-3 mx-auto">タグが"<%=@tag.name%>"の投稿一覧</h1>
+  </div>
+
+  <!--タグリスト-->
+  <div class='row'>
+    全てのタグ：
+    <% @tag_list.each do |list|%>
+      <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+      <%="(#{list.posts.count})" %>
+    <% end %>
+  </div>
+  
+  <div class='row'>
+    <% @posts.each do |post| %>
+    <div class="">
+      <%=link_to post_path(post.id) do %>
+        <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "" %>
+        <%= post.theme %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>

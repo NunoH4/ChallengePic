@@ -51,14 +51,21 @@ class Public::PostsController < ApplicationController
     else
       render :edit
     end
-    
-    
   end
   
   def destroy
     post = Post.find(params[:id])
     post.destroy
     redirect_to root_path
+  end
+  
+  def search_tag
+      # 検索結果画面でもタグ一覧表示
+    @tag_list = Tag.all
+    # 　検索されたタグを受け取る
+    @tag = Tag.find(params[:tag_id])
+    # 　検索されたタグに紐づく投稿を表示
+    @posts = @tag.posts
   end
   
   private

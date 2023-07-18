@@ -19,7 +19,8 @@
       <p>
         <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
-          <span class="btn btn-outline-secondary tag-button"><%= tag.name %></span>
+          <!--<span class="btn btn-outline-secondary tag-button"><%= tag.name %></span>-->
+          <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "btn btn-outline-secondary tag-button"%>
         <% end %>
       </p>
     </div>
