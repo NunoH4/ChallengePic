@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
     
     if @post.update(post_params)
       # このpost_idに紐づいていたタグを@oldに入れる
-      @old_relations=PostTag.where(post_id: @post.id)
+      @old_relations=PostTagRelation.where(post_id: @post.id)
       # それらを取り出して順に全て消す。
       @old_relations.each do |relation|
       relation.delete
