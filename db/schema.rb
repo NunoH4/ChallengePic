@@ -70,13 +70,11 @@ ActiveRecord::Schema.define(version: 2023_07_13_081058) do
   end
 
   create_table "post_tag_relations", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id", "tag_id"], name: "index_post_tag_relations_on_post_id_and_tag_id", unique: true
-    t.index ["post_id"], name: "index_post_tag_relations_on_post_id"
-    t.index ["tag_id"], name: "index_post_tag_relations_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -96,6 +94,4 @@ ActiveRecord::Schema.define(version: 2023_07_13_081058) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "post_tag_relations", "posts"
-  add_foreign_key "post_tag_relations", "tags"
 end
