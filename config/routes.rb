@@ -12,11 +12,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'homes/guideline' => 'homes#guideline'
-
+    get "search_tag" => "posts#search_tag"
     resources :members, only: [:show, :edit, :update]
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
     end
-    get "search_tag" => "posts#search_tag"
   end
 end

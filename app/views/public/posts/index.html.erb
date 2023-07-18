@@ -13,20 +13,4 @@
     <% end %>
   </div>
   
-  <!--タグリスト-->
-  <div>
-    <% @tag_list.each do |list|%>
-      <%=link_to list.name,search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
-    <% end %>
-  </div>
-
-  <!--投稿一覧画面で投稿に紐づくタグを表示-->
-  <div>
-    <i class="fas fa-tag"></i>
-    <% @posts.each do |post| %>
-      <%= post.tags.map(&:name).join(', ') %>
-    <% end %>
-  </div>
-
-  
 </div>
