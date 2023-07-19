@@ -32,4 +32,23 @@
       </div>
     <% end %>
   </div>
+  
+  <div class="row mt-5 d-flex justify-content-center">
+    <p><i class="fas fa-heart"  style="color: red;"></i>お気に入りの投稿</p>
+  </div>
+  
+  <div class="row">
+    <% if @favorite_list.present? %>
+      <% @favorite_list.each do |post| %>
+        <div class="col-md-4">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.image, class: "img-fluid mt-3" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>お気に入りがありません。</p>
+    <% end %>
+  </div>
+  
 </div>

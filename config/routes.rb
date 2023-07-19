@@ -13,9 +13,12 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'homes/guideline' => 'homes#guideline'
     get "search_tag" => "posts#search_tag"
-    resources :members, only: [:show, :edit, :update]
+    resources :members, only: [:show, :edit, :update] do
+      get :favorites, on: :collection
+    end
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
   end
 end

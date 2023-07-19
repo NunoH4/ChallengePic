@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tag_relations
   belongs_to :member
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :image
 
   def save_tag(sent_tags)
@@ -23,6 +24,10 @@ class Post < ApplicationRecord
         new_post_tag = Tag.find_or_create_by(name: new)
         self.tags << new_post_tag
      end
+  end
+  
+  def favorited_by?(member)
+    favorites.exists?(member_id: member.id)
   end
 
 end
