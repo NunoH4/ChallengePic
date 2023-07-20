@@ -7,7 +7,7 @@
     <% @posts.each do |post| %>
       <div class="col-md-4">
         <%= link_to post_path(post.id) do %>
-          <%= image_tag post.image, class: "img-fluid mt-3" %>
+          <%= image_tag post.image.variant(resize: '500x500'), class: "img-fluid mt-3" %>
         <% end %>
       </div>
     <% end %>

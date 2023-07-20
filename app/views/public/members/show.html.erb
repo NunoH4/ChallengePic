@@ -1,6 +1,10 @@
 <div class="container mt-5">
   <div class="row d-flex justify-content-center">
-    <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" if @member.profile_image.attached? %>
+    <% if @member.profile_image.attached? %>
+      <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag "no_image.jpg", class: "rounded-circle", size: '100x100' %>
+    <% end %>
   </div>
   
   <div class="row mt-1 d-flex justify-content-center">

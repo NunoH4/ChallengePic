@@ -1,0 +1,103 @@
+<div class='container mt-5'>
+  <div class='row'>
+    <h1 class="px-3 mx-auto">検索結果</h1>
+  </div>
+
+  <!--検索対象モデルがMemberの場合 -->
+  <% if @range == "ユーザー" %>
+    <% if @members.empty? %>
+      <div class="text-center">検索結果がありませんでした</div>
+      
+    <% else %>
+      <table class="table">
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td>
+              <%= link_to member_path(member), class: "text-dark text-decoration-none" do %>
+                <% if member.profile_image.attached? %>
+                  <%= image_tag member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
+                <% end %>
+                <%= member.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+  <!--検索対象モデルがChallengeの場合 -->
+  <% elsif @range == "Challenge Theme" %>
+    <% if @posts.empty? %>
+      <div>検索結果がありませんでした</div>
+    <% else %>
+      <table class="table">
+      <thead>
+        <td class="text-center table-light"></td>
+        <td class="text-center table-light">Challenge Theme</td>
+        <td class="text-center table-light">ユーザー</td>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post_path(post), class: "text-dark text-decoration-none" do %>
+                <%= image_tag post.image.variant(resize: '300x300'), class: "" %>
+              <% end %>
+            </td>
+            <td>
+              <%= post.theme %>
+            </td>
+            <td>
+              <%= link_to member_path(post.member) do %>
+                <%= post.member.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+  <!--検索対象モデルがタグの場合 -->
+  <% else %>
+    <% if @tags.empty? %>
+      <div>検索結果がありませんでした</div>
+    <% else %>
+      <table class="table table-inverse">
+        <thead>
+          <td class="text-center table-light"></td>
+          <td class="text-center table-light">タグ</td>
+          <td class="text-center table-light">ユーザー</td>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+            <% tag.posts.each do |post| %>
+              <tr>
+                <td class="text-center">
+                  <%= link_to post_path(post) do %>
+                    <%= image_tag post.image.variant(resize: '300x300') %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= tag.name %>
+                </td>
+                <td class="text-center">
+                  <%= link_to member_path(post.member) do %>
+                    <% if post.member.profile_image.attached? %>
+                      <%= image_tag post.member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
+                    <% else %>
+                      <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
+                    <% end %>
+                    <%= post.member.name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+</div>

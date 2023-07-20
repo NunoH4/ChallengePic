@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!, except: [:index, :show, :search_tag]
   
   def new
     @daily_theme = Challenge.last&.theme
@@ -60,7 +61,7 @@ class Public::PostsController < ApplicationController
   end
   
   def search_tag
-      # 検索結果画面でもタグ一覧表示
+    # 検索結果画面でもタグ一覧表示
     @tag_list = Tag.all
     # 　検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])

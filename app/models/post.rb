@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :image
 
+  # タグ付け機能
   def save_tag(sent_tags)
     # タグが存在していれば、タグの名前を配列として全て取得
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -26,8 +27,26 @@ class Post < ApplicationRecord
      end
   end
   
+  # お気に入り機能
   def favorited_by?(member)
+    return false if member.nil? #未ログインユーザーの場合nilではなくfalseを返すようにする
     favorites.exists?(member_id: member.id)
   end
+  
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("theme LIKE?","#{word}")
+    elsif search == "forward_match"
+      @post = Post.where("theme LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @post = Post.where("theme LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @postk = Post.where("theme LIKE?","%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
+  
 
 end

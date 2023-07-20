@@ -23,6 +23,10 @@
 
       <ul class="navbar-nav ml-auto">
         <% if member_signed_in? %>
+          <!--検索フォーム-->
+          <li class="nav-link">
+            <%= render 'layouts/search' %>
+          </li>
           <li class="nav-link">
             <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
             <i class="far fa-images"></i>
@@ -54,10 +58,20 @@
             <% end %>
           </li>
         <% else %>
+          <!--検索フォーム-->
+          <li class="nav-link">
+            <%= render 'layouts/search' %>
+          </li>
           <li class="nav-link">
             <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
             <i class="far fa-images"></i>
             過去の投稿
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to new_post_path, class: "text-dark text-decoration-none" do %>
+            <i class="fas fa-paper-plane"></i>
+            投稿する
             <% end %>
           </li>
           <li class="nav-link">
