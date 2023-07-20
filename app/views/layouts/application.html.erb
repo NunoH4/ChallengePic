@@ -24,7 +24,7 @@
       <ul class="navbar-nav ml-auto">
         <% if member_signed_in? %>
           <!--検索フォーム-->
-          <li class="nav-link">
+          <li class="nav-item">
             <%= render 'layouts/search' %>
           </li>
           <li class="nav-link">
@@ -59,7 +59,7 @@
           </li>
         <% else %>
           <!--検索フォーム-->
-          <li class="nav-link">
+          <li class="nav-item">
             <%= render 'layouts/search' %>
           </li>
           <li class="nav-link">
@@ -97,7 +97,16 @@
     </nav>
   </header>
   <main>
-    <p id="notice"><%= notice %></p>
+    <% if notice %>
+      <div class="flash-message success">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="flash-message error">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </main>
 </body>

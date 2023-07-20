@@ -31,7 +31,7 @@
   <!--検索対象モデルがChallengeの場合 -->
   <% elsif @range == "Challenge Theme" %>
     <% if @posts.empty? %>
-      <div>検索結果がありませんでした</div>
+      <div class="text-center">検索結果がありませんでした</div>
     <% else %>
       <table class="table">
       <thead>
@@ -65,39 +65,24 @@
     <% if @tags.empty? %>
       <div>検索結果がありませんでした</div>
     <% else %>
-      <table class="table table-inverse">
-        <thead>
-          <td class="text-center table-light"></td>
-          <td class="text-center table-light">タグ</td>
-          <td class="text-center table-light">ユーザー</td>
-        </thead>
-        <tbody>
-          <% @tags.each do |tag| %>
-            <% tag.posts.each do |post| %>
-              <tr>
-                <td class="text-center">
-                  <%= link_to post_path(post) do %>
-                    <%= image_tag post.image.variant(resize: '300x300') %>
-                  <% end %>
-                </td>
-                <td class="text-center">
-                  <%= tag.name %>
-                </td>
-                <td class="text-center">
-                  <%= link_to member_path(post.member) do %>
-                    <% if post.member.profile_image.attached? %>
-                      <%= image_tag post.member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
-                    <% else %>
-                      <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
-                    <% end %>
-                    <%= post.member.name %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% @tags.each do |tag| %>
+          <% tag.posts.each do |post| %>
+            <div class="col mb-4">
+              <div class="card h-100">
+                <%= link_to post_path(post), class: "text-dark text-decoration-none" do %>
+                  <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "card-img-top" %>
+                  <div class="card-body">
+                    <h5 class="card-title">タグ: <%= tag.name %></h5>
+                    <p class="card-text">user:<%= link_to post.member.name, member_path(post.member), class: "text-dark text-decoration-none" %></p>
+                    <small class="text-muted">posting date: <%= post.created_at.strftime("%Y/%m/%d") %></small>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
-        </tbody>
-      </table>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>

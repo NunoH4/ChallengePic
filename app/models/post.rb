@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one_attached :image
+  
+  validate :check_image
 
   # タグ付け機能
   def save_tag(sent_tags)
@@ -48,5 +50,21 @@ class Post < ApplicationRecord
     end
   end
   
+  private
 
+  #Active Storageのバリデーションチェック
+  def check_image
+    if image.attached?
+      unless image.blob.content_type.start_with?('image/')
+        errors.add(:image, 'は画像ファイルを選択してください（jpg, jpeg, pngなど）')
+      else
+        if image.blob.byte_size > 1.megabytes
+          errors.add(:image, 'のサイズは1MB以下にしてください')
+        end
+      end
+    else
+      errors.add(:image, 'ファイルを添付してください')
+    end
+  end
+  
 end

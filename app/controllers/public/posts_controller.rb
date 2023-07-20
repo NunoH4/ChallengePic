@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post), notice:'投稿が完了しました'
     else
-      puts @post.errors.full_messages.to_s
+      
       render :new
     end
   end

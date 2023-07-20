@@ -1,5 +1,16 @@
 <div class='container mt-5'>
 
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class='row'>
     <h2 class="px-3 mx-auto">Today's Challenge</h2>
   </div>
