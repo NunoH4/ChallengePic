@@ -13,12 +13,12 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand">
       <div class="navbar-brand">
         <%= link_to root_path do %>
           <%= image_tag 'logo.png', class: 'logo', width: '150' %>
         <% end %>
-        <span class="small">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
+        <span class="small head-text">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
       </div>
 
       <ul class="navbar-nav ml-auto">
@@ -28,31 +28,31 @@
             <%= render 'layouts/search' %>
           </li>
           <li class="nav-link">
-            <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to posts_path, class: "head-text text-decoration-none" do %>
             <i class="far fa-images"></i>
             過去の投稿
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to new_post_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to new_post_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-paper-plane"></i>
             投稿する
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to member_path(current_member.id), class: "text-dark text-decoration-none" do %>
+            <%= link_to member_path(current_member.id), class: "head-text text-decoration-none" do %>
             <i class="fas fa-user"></i>
             マイページ
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to homes_guideline_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to homes_guideline_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-book"></i>
             ガイドライン
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to destroy_member_session_path, method: :delete, class: "text-dark text-decoration-none" do %>
+            <%= link_to destroy_member_session_path, method: :delete, class: "head-text text-decoration-none" do %>
             <i class="fas fa-sign-out-alt"></i>
             ログアウト
             <% end %>
