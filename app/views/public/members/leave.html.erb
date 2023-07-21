@@ -1,0 +1,14 @@
+<div class='container mt-5'>
+  <div class='row'>
+    <h3 class="px-3 mx-auto">本当に退会しますか？</h3>
+  </div>
+
+  <div class='row'>
+    <p class="mx-auto">退会する場合は、『退会する』をクリックしてください。</p>
+  </div>
+
+  <div class='row justify-content-center'>
+    <%= link_to '退会しない', member_path(@member), class: "btn btn-primary mr-3" %>
+    <%= link_to "退会する", withdrawal_member_path(@member), method: :patch, class: "btn btn-danger" %>
+  </div>
+</div>

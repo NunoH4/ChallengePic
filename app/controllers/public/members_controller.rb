@@ -1,5 +1,5 @@
 class Public::MembersController < ApplicationController
-  before_action :ensure_correct_member, only: [:update, :edit]
+  before_action :correct_member, only: [:update, :edit, :leave, :withdrawal]
   
   def show
     @member = Member.find(params[:id])
@@ -19,14 +19,26 @@ class Public::MembersController < ApplicationController
       render :edit
     end
   end
+  
+  def leave
+    @member = Member.find(current_member.id)
+  end
 
+  def withdrawal
+    @member = Member.find(params[:id])
+    @member.update(is_deleted: true) # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
+  
   private
 
   def member_params
     params.require(:member).permit(:name, :introduction, :profile_image)
   end
   
-  def ensure_correct_member
+  def correct_member
     @member = Member.find(params[:id])
     unless @member == current_member
       redirect_to member_path(current_member)

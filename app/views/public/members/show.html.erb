@@ -17,7 +17,7 @@
   
   <div class="row justify-content-end">
     <% if @member == current_member %>
-      <%= link_to edit_member_path(@member.id), class: "text-body" do %>
+      <%= link_to edit_member_path(@member), class: "text-body" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     <% end %>

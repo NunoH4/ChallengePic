@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     resources :members, only: [:show, :edit, :update] do
       get :favorites, on: :collection
+      get 'leave', on: :member
+      patch 'withdrawal', on: :member
     end
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]

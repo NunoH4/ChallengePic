@@ -24,4 +24,8 @@ class Member < ApplicationRecord
     end
   end
   
+  def active_for_authentication?
+    super && (is_deleted == false)  # is_deletedがfalseならtrueを返すようにする
+  end
+  
 end
