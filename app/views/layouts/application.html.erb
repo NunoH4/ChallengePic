@@ -22,7 +22,14 @@
       </div>
 
       <ul class="navbar-nav ml-auto">
-        <% if member_signed_in? %>
+        <% if admin_signed_in? %>
+          <li class="nav-link">
+            <%= link_to destroy_admin_session_path, method: :delete, class: "head-text text-decoration-none" do %>
+            <i class="fas fa-sign-out-alt"></i>
+            ログアウト
+            <% end %>
+          </li>
+        <% elsif member_signed_in? %>
           <!--検索フォーム-->
           <li class="nav-item">
             <%= render 'layouts/search' %>
@@ -63,31 +70,31 @@
             <%= render 'layouts/search' %>
           </li>
           <li class="nav-link">
-            <%= link_to posts_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to posts_path, class: "head-text text-decoration-none" do %>
             <i class="far fa-images"></i>
             過去の投稿
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to new_post_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to new_post_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-paper-plane"></i>
             投稿する
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to homes_guideline_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to homes_guideline_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-book"></i>
             ガイドライン
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to new_member_registration_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to new_member_registration_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-user-plus"></i>
             新規登録
             <% end %>
           </li>
           <li class="nav-link">
-            <%= link_to new_member_session_path, class: "text-dark text-decoration-none" do %>
+            <%= link_to new_member_session_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-sign-in-alt"></i>
             ログイン
             <% end %>

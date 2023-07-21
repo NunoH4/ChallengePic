@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   namespace :public do
     get 'members/show'
     get 'members/edit'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
   scope module: :public do
     root 'homes#top'
     get 'homes/guideline' => 'homes#guideline'
