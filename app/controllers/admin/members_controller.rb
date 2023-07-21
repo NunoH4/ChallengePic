@@ -1,10 +1,13 @@
 class Admin::MembersController < ApplicationController
+  
   def index
     @members = Member.all
   end
 
   def show
     @member = Member.find(params[:id])
+    @post = @member.posts
+    @post_comment = @member.post_comments
   end
 
   def edit
@@ -19,6 +22,7 @@ class Admin::MembersController < ApplicationController
       render :edit
     end
   end
+
 
   private
 
