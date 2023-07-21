@@ -14,12 +14,12 @@
         <% @members.each do |member| %>
           <tr>
             <td>
-              <%= link_to member_path(member), class: "text-dark text-decoration-none" do %>
                 <% if member.profile_image.attached? %>
                   <%= image_tag member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
                 <% else %>
                   <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
                 <% end %>
+              <%= link_to member_path(member), class: "text-dark text-decoration-none" do %>
                 <%= member.name %>
               <% end %>
             </td>
@@ -44,7 +44,7 @@
           <tr>
             <td>
               <%= link_to post_path(post), class: "text-dark text-decoration-none" do %>
-                <%= image_tag post.image.variant(resize: '300x300'), class: "" %>
+                <%= image_tag post.image.variant(resize: "300x300"), class: "" %>
               <% end %>
             </td>
             <td>

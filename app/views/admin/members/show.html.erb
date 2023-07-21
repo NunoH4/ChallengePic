@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="row">
+    <h3 class="mx-auto">
+      <%= @member.name%>さんの登録情報詳細
+    </h3>
+  </div>
+  
+  <div class="row">
+    <table class="table">
+      <tr class="text-center">
+        <td class="">ユーザーID</td>
+        <td><%= @member.id %></td>
+      </tr>
+      <tr class="text-center">
+        <td>ユーザー名</td>
+        <td><%= @member.name %></td>
+      </tr>
+      <tr class="text-center">
+        <td>アイコン</td>
+        <td>
+          <% if @member.profile_image.attached? %>
+            <%= image_tag @member.profile_image.variant(resize: "80x80"), class: "rounded-circle" %>
+          <% else %>
+            登録無し
+          <% end %>
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>自己紹介</td>
+        <td>
+            <% if @member.introduction.present? %>
+              <%= @member.introduction %>
+            <% else %>
+              登録無し
+            <% end %>
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>メールアドレス</td>
+        <td><%= @member.email %></td>
+      </tr>
+      <tr class="text-center">
+        <td>ユーザーステータス</td>
+        <% if @member.is_deleted == false %>
+          <td class="text-success">有効</td>
+        <% else %>
+          <td class="text-black-50">退会</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+  <div class="row justify-content-center">
+      <%= link_to "編集する", edit_admin_member_path(@member.id),class: "btn btn-success mr-3" %>
+      <%= link_to "投稿一覧を見る",'/admin',class: "btn btn-primary" %>
+  </div>
+</div>
