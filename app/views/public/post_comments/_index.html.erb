@@ -1,5 +1,6 @@
 <% post.post_comments.each do |post_comment| %>
-  <div class="d-flex">
+  <div class="d-flex mb-2 border-bottom">
+    <!--コメント投稿ユーザーの情報-->
     <div>
       <%= link_to member_path(post_comment.member.id), class: "text-decoration-none", remote: true, data: {"turbolinks" => false} do %>
         <% if post_comment.member.profile_image.attached? %>
@@ -9,6 +10,8 @@
         <% end %>
       <% end %>
     </div>
+    
+    <!--コメント本文・投稿日時・削除ボタン-->
     <div class="ms-2 flex-grow-1 ml-1">
       <div>
         <span class="text-dark comment-member_name"><%= post_comment.member.name %></span>
