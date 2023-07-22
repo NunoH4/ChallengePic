@@ -1,1 +1,5 @@
-$("#favorite_buttons_<%= @post.id %>").html("<%= j(render partial: 'public/favorites/btn', locals: { post: @post }) %>");
+<% if @error_message %>
+  alert("<%= @error_message %>");
+<% else %>
+  $("#favorite_buttons_<%= @post.id %>").html("<%= j(render partial: 'public/favorites/btn', locals: { post: @post }) %>");
+<% end %>
