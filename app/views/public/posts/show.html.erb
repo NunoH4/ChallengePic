@@ -1,78 +1,99 @@
-<div class="container mt-5">
-    <!--投稿画像-->
+<div class="container my-5">
+    <!--投稿画像表示-->
     <div class="row d-flex justify-content-center">
       <%= image_tag @post.image.variant(resize_to_limit: [800, 800]) %>
     </div>
-    
-    <!--投稿ユーザーの情報-->
-    <div class="row mt-3 d-flex align-items-center justify-content-center flex-column">
-      <%= link_to member_path(@post.member.id) do %>
+
+    <!--お気に入り機能-->
+    <div class="row d-flex justify-content-end">
+      <div class="col mb-3 d-flex justify-content-end" id="favorite_buttons_<%= @post.id %>">
+        <%= render "public/favorites/btn", post: @post %>
+      </div>
+    </div>
+
+    <!--投稿ユーザー情報表示-->
+    <div class="row d-flex justify-content-center">
+      <%= link_to member_path(@post.member.id), class: "text-decoration-none" do %>
         <% if @post.member.profile_image.attached? %>
           <%= image_tag @post.member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
         <% else %>
           <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
         <% end %>
-        <div class="text-center"><%= @post.member.name %></div>
+        <div class="text-center text-dark"><h5><%= @post.member.name %></h5></div>
       <% end %>
     </div>
-    
-    <div class="row d-flex align-items-center justify-content-center flex-column">
-      <!--投稿のテーマ-->
-      <h4>THEME：<%= @post.theme %></h4>
+
+    <!--投稿情報表示-->
+    <div class="row d-flex align-items-center flex-column">
+      <!--投稿時のテーマ-->
+      <h4>Challenge Theme：<%= @post.theme %></h4>
       <!--投稿の説明文-->
       <p><%= @post.body %></p>
       <!--投稿のタグ一覧-->
-      <p>
-        <i class="fas fa-tag"></i>
-        <% @post_tags.each do |tag| %>
-          <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "btn btn-outline-secondary tag-button"%>
+      <% if @post_tags.present? %>
+        <div class="d-flex align-items-center">
+          <i class="fas fa-tag mr-1 show-tag-icon"></i>
+          <% @post_tags.each do |tag| %>
+            <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "btn btn-sm btn-outline-secondary mr-2"%>
+          <% end %>
+        </div>
+      <% end %>
+      <!--投稿日時-->
+      <small class="text-muted mt-2">posting date: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+    </div>
+    
+    <!--投稿編集リンク-->
+    <div class="row">
+      <div class="col mb-3 d-flex justify-content-end">
+        <% if @post.member == current_member %>
+          <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-secondary rounded-pill" %>
         <% end %>
-      </p>
-      <!--お気に入り-->
-      <div id="favorite_buttons_<%= @post.id %>">
-        <%= render "public/favorites/btn", post: @post %>
       </div>
     </div>
-    
-    
-    <!--投稿編集・削除リンク-->
-    <div class="row mb-3 d-flex justify-content-center">
-      <% if @post.member == current_member %>
-        <%= link_to '編集する', edit_post_path(@post), class: "btn btn-outline-secondary rounded-pill" %>　　
-        <%= link_to '削除する', @post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-secondary rounded-pill"%>
-      <% end %>
+
+    <!--ライン-->
+    <div class="row border-top"></div>
+
+    <!--コメント機能-->
+    <div class="row mt-3">
+      <div class="col h5"><i class="far fa-comment mr-1"></i>コメント</div>
     </div>
-    
+
     <div class="row">
       <!--コメント一覧-->
-      <div class="col-6">
+      <div class="col-6 mt-3">
         <% @post.post_comments.each do |post_comment| %>
-          <div>
-            <%= link_to member_path(post_comment.member.id) do %>
-              <% if post_comment.member.profile_image.attached? %>
-                <%= image_tag post_comment.member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
-              <% else %>
-                <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+          <div class="d-flex">
+            <div>
+              <%= link_to member_path(post_comment.member.id), class: "text-decoration-none" do %>
+                <% if post_comment.member.profile_image.attached? %>
+                  <%= image_tag post_comment.member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                <% end %>
               <% end %>
-              <%= post_comment.member.name %>
-            <% end %>
+            </div>
+            <div class="ms-2 flex-grow-1 ml-1">
+              <div>
+                <span class="text-dark comment-member_name"><%= post_comment.member.name %></span>
+                <span><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+              </div>
+              <div><%= post_comment.comment %></div>
+              <% if post_comment.member == current_member %>
+                <div class="d-flex justify-content-end">
+                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary btn-sm rounded-pill" %>
+                </div>
+              <% end %>
+            </div>
           </div>
-          <div>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-          </div>
-          <p>
-            <% if post_comment.member == current_member %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary rounded-pill" %>
-            <% end %>
-          </p>
         <% end %>
       </div>
       
       <!--コメント投稿フォーム-->
-      <div class="col-6">
+      <div class="col-6 mt-3">
         <%= form_with model: [@post, @post_comment] do |f| %>
         <div class="form-group">
-          <label for="comment"><i class="far fa-comment"></i> コメント</label>
+
           <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: 'form-control comment' %>
         </div>
 

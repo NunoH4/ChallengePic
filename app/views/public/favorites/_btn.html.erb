@@ -1,11 +1,11 @@
 <% if post.favorited_by?(current_member) %>
-  <%= link_to post_favorites_path(post.id), method: :delete, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= post.favorites.count %>
+  <%= link_to post_favorites_path(post.id), method: :delete, remote: true, data: {"turbolinks" => false}, class: "text-decoration-none" do %>
+    <i class="fas fa-heart show-fav" aria-hidden="true" style="color: red;"></i>
+    <span class="show-fav text-muted"><%= post.favorites.count %></span>
   <% end %>
 <% else %>
-  <%= link_to post_favorites_path(post.id), method: :post, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= post.favorites.count %>
+  <%= link_to post_favorites_path(post.id), method: :post, remote: true, data: {"turbolinks" => false}, class: "text-decoration-none" do %>
+    <i class="far fa-heart show-fav text-muted" aria-hidden="true"></i>
+    <span class="show-fav text-muted"><%= post.favorites.count %></span>
   <% end %>
 <% end %>

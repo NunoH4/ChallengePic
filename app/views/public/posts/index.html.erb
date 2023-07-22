@@ -1,6 +1,6 @@
-<div class='container mt-5'>
+<div class='container my-5'>
   <div class='row'>
-    <h1 class="px-3 mx-auto">POSTS LIST</h1>
+    <h2 class="mx-auto">POSTS LIST</h2>
   </div>
   
   <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
@@ -13,7 +13,7 @@
               <h5 class="card-text">Challenge Theme:</h5>
               <h5 class="card-text"><%= post.theme %></h5>
               <p>user: <%= post.member.name %></p>
-              <small class="text-muted">posting date: <%= post.created_at.strftime("%Y/%m/%d") %></small>
+              <small class="text-muted">posting date: <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
             </div>
           <% end %>
         </div>

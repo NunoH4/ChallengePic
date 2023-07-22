@@ -6,3 +6,10 @@ header {
   color: #F2E9E4;
 }
 
+.show-tag-icon, .show-fav {
+  font-size: 25px;
+}
+
+.comment-member_name {
+  font-weight: bold;
+}

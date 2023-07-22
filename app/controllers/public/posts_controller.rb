@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params.except(:name)) #post_paramsからTagのカラムを除外
     @post.member_id = current_member.id
     @post.theme = Challenge.last&.theme
     tag_list = params[:post][:name].split(',')
@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post), notice:'投稿が完了しました'
     else
-      
+      @daily_theme = Challenge.last&.theme
       render :new
     end
   end
@@ -40,7 +40,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
     
-    if @post.update(post_params)
+    if @post.update(post_params.except(:name))
       # このpost_idに紐づいていたタグを@oldに入れる
       @old_relations=PostTagRelation.where(post_id: @post.id)
       # それらを取り出して順に全て消す。
@@ -72,6 +72,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body)
+    params.require(:post).permit(:image, :body, :name) #:nameはTagのカラム
   end
 end
