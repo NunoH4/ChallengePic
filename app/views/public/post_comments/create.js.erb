@@ -1,2 +1,7 @@
-$("#comments_area").html("<%= j( render "public/post_comments/index", post_comment: @post_comment, post: @post) %>")
-$("textarea").val('')
+<% if @post_comment.errors.any? %>
+  $("#post_comment_errors").html("<%= j( render "layouts/error_messages", model: @post_comment) %>");
+<% else %>
+  $("#comments_area").html("<%= j( render "public/post_comments/index", post: @post) %>")
+  $("textarea").val('');
+  $("#post_comment_errors").html('');
+<% end %>
