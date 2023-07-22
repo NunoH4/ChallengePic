@@ -41,7 +41,7 @@
       <!--投稿日時-->
       <small class="text-muted mt-2">posting date: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
     </div>
-    
+
     <!--投稿編集リンク-->
     <div class="row">
       <div class="col mb-3 d-flex justify-content-end">
@@ -61,46 +61,13 @@
 
     <div class="row">
       <!--コメント一覧-->
-      <div class="col-6 mt-3">
-        <% @post.post_comments.each do |post_comment| %>
-          <div class="d-flex">
-            <div>
-              <%= link_to member_path(post_comment.member.id), class: "text-decoration-none" do %>
-                <% if post_comment.member.profile_image.attached? %>
-                  <%= image_tag post_comment.member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
-                <% else %>
-                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="ms-2 flex-grow-1 ml-1">
-              <div>
-                <span class="text-dark comment-member_name"><%= post_comment.member.name %></span>
-                <span><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-              </div>
-              <div><%= post_comment.comment %></div>
-              <% if post_comment.member == current_member %>
-                <div class="d-flex justify-content-end">
-                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary btn-sm rounded-pill" %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+      <div class="col-6 mt-3" id="comments_area">
+        <%= render 'public/post_comments/index', post: @post %>
       </div>
-      
+
       <!--コメント投稿フォーム-->
       <div class="col-6 mt-3">
-        <%= form_with model: [@post, @post_comment] do |f| %>
-        <div class="form-group">
-
-          <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: 'form-control comment' %>
-        </div>
-
-        <div class="form-group text-right">
-          <%= f.submit "投稿する", class: 'btn btn-outline-secondary rounded-pill' %>
-        </div>
-        <% end %>
+        <%= render 'public/post_comments/form', post: @post, post_comment: @post_comment %>
       </div>
     </div>
 </div>

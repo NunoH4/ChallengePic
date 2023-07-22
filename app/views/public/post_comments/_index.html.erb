@@ -1,0 +1,25 @@
+<% post.post_comments.each do |post_comment| %>
+  <div class="d-flex">
+    <div>
+      <%= link_to member_path(post_comment.member.id), class: "text-decoration-none", remote: true, data: {"turbolinks" => false} do %>
+        <% if post_comment.member.profile_image.attached? %>
+          <%= image_tag post_comment.member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="ms-2 flex-grow-1 ml-1">
+      <div>
+        <span class="text-dark comment-member_name"><%= post_comment.member.name %></span>
+        <span><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+      </div>
+      <div><%= post_comment.comment %></div>
+      <% if post_comment.member == current_member %>
+        <div class="d-flex justify-content-end">
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary btn-sm rounded-pill", remote: true, data: {"turbolinks" => false} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
