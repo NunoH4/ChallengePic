@@ -6,6 +6,10 @@ header {
   color: #F2E9E4;
 }
 
+.head-about {
+  font-size: 15px;
+}
+
 .show-tag-icon, .show-fav {
   font-size: 25px;
 }
