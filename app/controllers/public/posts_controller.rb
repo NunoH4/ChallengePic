@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params.except(:name)) #post_paramsからTagのカラムを除外
+    @post = Post.new(image_resize(post_params.except(:name))) #post_paramsからTagのカラムを除外
     @post.member_id = current_member.id
     @post.theme = Challenge.last&.theme
     tag_list = params[:post][:name].split(',')
@@ -71,5 +71,12 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:image, :body, :name) #:nameはTagのカラム
+  end
+  
+  def image_resize(params)
+    if params[:image]
+      params[:image].tempfile = ImageProcessing::MiniMagick.source(params[:image].tempfile).resize_to_limit(800, 800).call
+    end
+    params
   end
 end

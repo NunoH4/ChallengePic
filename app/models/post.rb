@@ -56,10 +56,10 @@ class Post < ApplicationRecord
   def check_image
     if image.attached?
       unless image.blob.content_type.start_with?('image/')
-        errors.add(:image, 'は画像ファイルを選択してください（jpg, jpeg, pngなど）')
+        errors.add(:image, 'は画像ファイルを選択してください）')
       else
-        if image.blob.byte_size > 1.megabytes
-          errors.add(:image, 'のサイズは1MB以下にしてください')
+        if image.blob.byte_size > 3.megabytes
+          errors.add(:image, 'のサイズは3MB以下にしてください')
         end
       end
     else
