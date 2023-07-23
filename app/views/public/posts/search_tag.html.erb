@@ -3,7 +3,8 @@
     <h2 class="mx-auto">"<%=@tag.name%>"のタグが付けられた投稿一覧</h2>
   </div>
 
-  <div class='row cols-1 row-cols-md-3 g-4 mt-3'>
+  <div class='row row-cols-1 row-cols-md-3 g-4 mt-3'>
     <%= render "public/posts/index", posts: @posts %>
   </div>
+  <%= paginate @posts %>
 </div>

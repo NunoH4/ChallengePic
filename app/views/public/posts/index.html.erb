@@ -3,8 +3,8 @@
     <h2 class="mx-auto">POSTS LIST</h2>
   </div>
   
-  <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 jscroll-div">
     <%= render "public/posts/index", posts: @posts %>
   </div>
-  
+  <%= paginate @posts %>
 </div>

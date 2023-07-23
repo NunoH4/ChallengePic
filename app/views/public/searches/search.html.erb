@@ -35,6 +35,7 @@
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         <%= render "public/posts/index", posts: @posts %>
       </div>
+      <%= paginate @posts %>
     <% end %>
   <!--検索対象モデルがタグの場合 -->
   <% else %>

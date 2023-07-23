@@ -10,6 +10,10 @@ header {
   font-size: 15px;
 }
 
+.pagination {
+  justify-content: center;
+}
+
 .show-tag-icon, .show-fav {
   font-size: 25px;
 }
