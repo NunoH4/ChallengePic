@@ -24,48 +24,24 @@
   </div>
    
   <div class="row mt-5 d-flex justify-content-center">
-    <p><i class="far fa-images"></i> 投稿</p>
+    <p><i class="far fa-images mr-1"></i>投稿</p>
   </div>
   
   <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-    <% if @post.present? %>
-      <% @post.each do |post| %>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <%= link_to post_path(post.id), class: "text-dark text-decoration-none" do %>
-              <%= image_tag post.image.variant(resize_to_limit: [500, 500]), class: "card-img-top" %>
-              <div class="card-body">
-                <p class="card-text">Challenge Theme: <%= post.theme %></p>
-                <small class="text-muted">Posted on <%= post.created_at.strftime("%Y/%m/%d") %></small>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+    <% if @posts.present? %>
+      <%= render "public/posts/index", posts: @posts %>
     <% else %>
       <p>投稿がまだありません。</p>
     <% end %>
   </div>
   
   <div class="row mt-5 d-flex justify-content-center">
-    <p><i class="fas fa-heart"></i> お気に入りした投稿</p>
+    <p><i class="fas fa-heart mr-1"></i>お気に入りした投稿</p>
   </div>
   
   <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
     <% if @favorite_list.present? %>
-      <% @favorite_list.each do |post| %>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <%= link_to post_path(post.id), class: "text-dark text-decoration-none" do %>
-              <%= image_tag post.image.variant(resize_to_limit: [500, 500]), class: "card-img-top" %>
-              <div class="card-body">
-                <p class="card-text">Challenge Theme: <%= post.theme %></p>
-                <small class="text-muted">Posted on <%= post.created_at.strftime("%Y/%m/%d") %></small>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <%= render "public/posts/index", posts: @favorite_list %>
     <% else %>
       <p>お気に入りがありません。</p>
     <% end %>

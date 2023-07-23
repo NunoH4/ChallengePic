@@ -10,18 +10,6 @@
   <div class="row"><h3>今日の投稿</h3></div>
   
   <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-    <% @posts.each do |post| %>
-      <div class="col mb-4">
-        <div class="card h-100">
-          <%= link_to post_path(post.id), class: "text-dark text-decoration-none" do %>
-            <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "card-img-top" %>
-            <div class="card-body">
-              <p>user: <%= post.member.name %></p>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    <%= render "public/posts/index", posts: @posts %>
   </div>
 </div>
-

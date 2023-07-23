@@ -3,7 +3,7 @@ class Public::MembersController < ApplicationController
   
   def show
     @member = Member.find(params[:id])
-    @post = @member.posts
+    @posts = @member.posts
     favorites = Favorite.where(member_id: @member.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @favorite_list = Post.where(id: favorites)  # postsテーブルからお気に入り登録済みのレコードを取得
   end

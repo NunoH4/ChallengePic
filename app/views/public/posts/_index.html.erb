@@ -1,0 +1,20 @@
+<% posts.each do |post| %>
+  <div class="col mb-4">
+    <div class="card h-100 shadow-sm">
+      <%= link_to post_path(post.id), class: "text-dark text-decoration-none" do %>
+        <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "card-img-top" %>
+      <% end %>
+        <div class="card-body">
+          <div class="d-flex justify-content-end">
+            <div class="card-text" id="favorite_buttons_<%= post.id %>">
+              <%= render "public/favorites/btn", post: post %>
+            </div>
+          </div>
+          <h5 class="card-text">Challenge Theme:</h5>
+          <h5 class="card-text"><%= post.theme %></h5>
+          <p class="card-text">user:<%= link_to post.member.name, member_path(post.member), class: "text-dark text-decoration-none" %></p>
+          <small class="text-muted">posting date: <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+        </div>
+    </div>
+  </div>
+<% end %>

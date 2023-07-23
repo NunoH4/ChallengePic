@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <div class="row">
     <h3 class="mx-auto">ユーザー管理</h3>
   </div>
@@ -23,7 +23,7 @@
               <% if member.profile_image.attached? %>
                 <%= image_tag member.profile_image.variant(resize: "80x80"), class: "rounded-circle" %>
               <% else %>
-                <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
+                <%= image_tag "no_image.jpg", class: "rounded-circle", size: "80x80" %>
               <% end %>
             <%= link_to member_path(member) do %>
               <%= member.name %>
