@@ -15,12 +15,9 @@
   <header>
     <nav class="navbar navbar-expand">
       <div class="navbar-brand">
-        <%= link_to root_path do %>
-          <%= image_tag 'logo.jpg', class: 'logo', width: '150' %>
-        <% end %>
+         <%= link_to image_tag("logo.jpg", class:"logo"), "/" %>
         <span class="head-text head-about">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
       </div>
-
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
           <li class="nav-link">
