@@ -7,6 +7,14 @@ class Post < ApplicationRecord
   has_one_attached :image
   
   validate :check_image
+  
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :most_favorited, -> { 
+    left_joins(:favorites)
+      .group(:id)
+      .order(Arel.sql('COUNT(favorites.id) DESC'))
+  }
 
   # タグ付け機能
   def save_tag(sent_tags)

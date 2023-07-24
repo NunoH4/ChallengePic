@@ -1,0 +1,6 @@
+<span class="col text-right">
+  <i class="fas fa-sort text-black-50 mr-1"></i>
+  <%= link_to '新しい順', posts_path(latest: "true"), class: "text-black-50 text-decoration-none soat" %>
+   <%= link_to '古い順', posts_path(old: "true"), class: "text-black-50 text-decoration-none soat" %>
+   <%= link_to 'お気に入り順', posts_path(most_favorited: "true"), class: "text-black-50 text-decoration-none soat" %>
+</span>

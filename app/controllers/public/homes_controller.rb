@@ -8,7 +8,7 @@ class Public::HomesController < ApplicationController
     else
       from = Time.current.beginning_of_day + 4.hours + 30.minutes
     end
-    @posts = Post.where("created_at >= ?", from)
+    @posts = Post.where("created_at >= ?", from).all.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def guideline

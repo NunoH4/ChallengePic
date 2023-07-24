@@ -3,6 +3,15 @@
     <h2 class="mx-auto">"<%=@tag.name%>"のタグが付けられた投稿一覧</h2>
   </div>
 
+  <div class='row'>
+    <span class="col text-right">
+      <i class="fas fa-sort text-black-50 mr-1"></i>
+      <%= link_to '新しい順', search_tag_path(latest: "true"), class: "text-black-50 text-decoration-none soat" %>
+       <%= link_to '古い順', search_tag_path(old: "true"), class: "text-black-50 text-decoration-none soat" %>
+       <%= link_to 'お気に入り順', search_tag_path(most_favorited: "true"), class: "text-black-50 text-decoration-none soat" %>
+    </span>
+  </div>
+  
   <div class='row row-cols-1 row-cols-md-3 g-4 mt-3'>
     <%= render "public/posts/index", posts: @posts %>
   </div>

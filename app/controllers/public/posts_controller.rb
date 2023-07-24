@@ -7,8 +7,16 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(6)
     @tag_list=Tag.all
+    if params[:latest] #新しい順
+      @posts = Post.latest.page(params[:page]).per(6)
+    elsif params[:old] #古い順
+      @posts = Post.old.page(params[:page]).per(6)
+    elsif params[:most_favorited] #お気に入り順
+      @posts = Post.most_favorited.page(params[:page]).per(6)
+    else
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6) #デフォルトを新着順に
+    end
   end
 
   def show

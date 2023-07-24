@@ -17,6 +17,10 @@ header {
   background-blend-mode: darken;
 }
 
+.soat:hover {
+  color: black !important;
+}
+
 .pagination {
   justify-content: center;
 }
