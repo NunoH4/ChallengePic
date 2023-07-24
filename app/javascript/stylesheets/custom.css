@@ -17,7 +17,7 @@ header {
   background-blend-mode: darken;
 }
 
-.soat:hover {
+.soat:hover, .tab:hover {
   color: black !important;
 }
 

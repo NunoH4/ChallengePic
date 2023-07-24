@@ -9,6 +9,14 @@ class Public::HomesController < ApplicationController
       from = Time.current.beginning_of_day + 4.hours + 30.minutes
     end
     @posts = Post.where("created_at >= ?", from).all.order(created_at: :desc).page(params[:page]).per(6)
+    
+    start_date = Time.current.beginning_of_month
+    end_date = Time.current.end_of_month
+    @rank_posts = Post.where(created_at: start_date..end_date)
+                        .left_joins(:favorites)
+                        .group(:id)
+                        .order('COUNT(favorites.id) DESC')
+                        .limit(3)
   end
 
   def guideline
