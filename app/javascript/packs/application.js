@@ -12,8 +12,9 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
-import 'stylesheets/custom'
-import '../tabs'
+import "stylesheets/custom";
+import "stylesheets/guideline";
+import "./tab";
 
 Rails.start()
 Turbolinks.start()

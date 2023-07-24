@@ -1,0 +1,9 @@
+.guideline-bg-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guideline-bg {
+  height: 300px;
+}
