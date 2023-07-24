@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <!--投稿ユーザー情報表示-->
+    <!--投稿ユーザーアイコン-->
     <div class="row d-flex justify-content-center">
       <%= link_to member_path(@post.member.id), class: "text-decoration-none" do %>
         <% if @post.member.profile_image.attached? %>
@@ -19,7 +19,15 @@
         <% else %>
           <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
         <% end %>
-        <div class="text-center text-dark"><h5><%= @post.member.name %></h5></div>
+      <% end %>
+    </div>
+    
+     <!--投稿ユーザー名-->
+    <div class="row d-flex justify-content-center">
+      <%= link_to member_path(@post.member.id), class: "text-decoration-none" do %>
+        <div class="row mt-1 d-flex justify-content-center text-dark">
+          <h5><%= @post.member.name %></h5>
+        </div>
       <% end %>
     </div>
 
