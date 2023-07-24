@@ -10,6 +10,13 @@ header {
   font-size: 15px;
 }
 
+.jumbotron {
+  background: url('../images/top_image.jpg') no-repeat center center;
+  background-size: cover;
+  background-color: rgba(0,0,0,0.5);
+  background-blend-mode: darken;
+}
+
 .pagination {
   justify-content: center;
 }
