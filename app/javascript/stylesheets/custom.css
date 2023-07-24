@@ -2,7 +2,7 @@ header {
   background-color: #2E3A59;
 }
 
-.head-text {
+.head-text, .head-text:hover {
   color: #F2E9E4;
 }
 
