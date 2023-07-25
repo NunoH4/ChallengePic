@@ -4,7 +4,7 @@ class Tag < ApplicationRecord
   # タグは複数の投稿を持つ（post_tag_relationshipsを通じて参照できる）
   has_many :posts, through: :post_tag_relations
   
-  validates :name, uniqueness: true, presence: true
+  validates :name, uniqueness: true, presence: true, length: {maximum: 15}
   
   # 検索方法分岐
   def self.looks(search, word)

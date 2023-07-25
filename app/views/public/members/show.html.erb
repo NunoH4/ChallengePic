@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <!--ユーザーアイコン-->
   <div class="row d-flex justify-content-center">
     <% if @member.profile_image.attached? %>
       <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" %>
@@ -7,42 +8,69 @@
     <% end %>
   </div>
   
+  <!--ユーザー名-->
   <div class="row mt-1 d-flex justify-content-center">
     <h3><%= @member.name %></h3>
   </div>
   
+  <!--自己紹介-->
   <div class="row d-flex justify-content-center">
     <p><%= @member.introduction %></p>
   </div>
   
-  <div class="row justify-content-end">
-    <% if @member == current_member %>
-      <%= link_to edit_member_path(@member), class: "text-body" do %>
-        <i class="fas fa-user-cog"></i>
+  <!--ユーザー情報編集ボタン-->
+  <div class="row">
+    <div class="col d-flex justify-content-end">
+      <% if @member == current_member %>
+        <%= link_to edit_member_path(@member), class: "btn btn-outline-secondary rounded-pill px-4" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-   
-  <div class="row mt-5 d-flex justify-content-center">
-    <p><i class="far fa-images mr-1"></i>投稿</p>
-  </div>
+</div>
+
+<div class="container">
   
-  <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-    <% if @posts.present? %>
-      <%= render "public/posts/index", posts: @posts %>
-    <% else %>
-      <p>投稿がまだありません。</p>
-    <% end %>
+  <!--タブメニュー-->
+  <ul class="nav justify-content-center" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active text-black-50 font-weight-bold tab" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="true"><i class="far fa-images mr-1"></i>投稿</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link text-black-50 font-weight-bold tab" id="fav-tab" data-toggle="tab" href="#fav" role="tab" aria-controls="fav" aria-selected="false"><i class="far fa-heart mr-1"></i>お気に入り</a>
+    </li>
+  </ul>
+
+  <!--ボーダーライン-->
+  <div class="col border-top"></div>
+
+  <!--タブコンテンツ-->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+      <% if @posts.present? %>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+          <%= render "public/posts/index", posts: @posts %>
+        </div>
+        <%= paginate @posts %>
+      <% else %>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+          投稿がまだありません
+        </div>
+       <% end %>
+    </div>
+    
+    <div class="tab-pane fade justify-content-center" id="fav" role="tabpanel" aria-labelledby="fav-tab">
+      <% if @favorite_list.present? %>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+          <%= render "public/posts/index", posts: @favorite_list %>
+        </div>
+        <%= paginate @favorite_list %>
+      <% else %>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+          お気に入りがありません
+        </div>
+      <% end %>
+    </div>
   </div>
-  
-  <div class="row mt-5 d-flex justify-content-center">
-    <p><i class="fas fa-heart mr-1"></i>お気に入りした投稿</p>
-  </div>
-  
-  <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-    <% if @favorite_list.present? %>
-      <%= render "public/posts/index", posts: @favorite_list %>
-    <% else %>
-      <p>お気に入りがありません。</p>
-    <% end %>
-  </div>
+</div>

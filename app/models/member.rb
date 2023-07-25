@@ -9,6 +9,9 @@ class Member < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :profile_image
   
+  validates :name, length: { minimum: 1, maximum: 15 }
+  validates :introduction, length: { maximum: 150 }
+  
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

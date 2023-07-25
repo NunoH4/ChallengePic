@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :image
   
+  validates :body, length: { maximum: 150 } 
   validate :check_image
   
   scope :latest, -> {order(created_at: :desc)}
