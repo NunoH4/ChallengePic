@@ -7,17 +7,17 @@
       <%= image_tag "no_image.jpg", class: "rounded-circle", size: '100x100' %>
     <% end %>
   </div>
-  
+
   <!--ユーザー名-->
   <div class="row mt-1 d-flex justify-content-center">
     <h3><%= @member.name %></h3>
   </div>
-  
+
   <!--自己紹介-->
   <div class="row d-flex justify-content-center">
     <p><%= @member.introduction %></p>
   </div>
-  
+
   <!--ユーザー情報編集ボタン-->
   <div class="row">
     <div class="col d-flex justify-content-end">
@@ -31,14 +31,14 @@
 </div>
 
 <div class="container">
-  
+
   <!--タブメニュー-->
   <ul class="nav justify-content-center" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link active text-black-50 font-weight-bold tab" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="true"><i class="far fa-images mr-1"></i>投稿</a>
+      <a class="nav-link text-black-50 font-weight-bold tab <% if @tab == 'post' %> active<% end %>" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="<%= @tab == 'post' ? 'true' : 'false' %>"><i class="far fa-images mr-1"></i>投稿</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link text-black-50 font-weight-bold tab" id="fav-tab" data-toggle="tab" href="#fav" role="tab" aria-controls="fav" aria-selected="false"><i class="far fa-heart mr-1"></i>お気に入り</a>
+      <a class="nav-link text-black-50 font-weight-bold tab <% if @tab == 'fav' %> active<% end %>" id="fav-tab" data-toggle="tab" href="#fav" role="tab" aria-controls="fav" aria-selected="<%= @tab == 'fav' ? 'true' : 'false' %>"><i class="far fa-heart mr-1"></i>お気に入り</a>
     </li>
   </ul>
 
@@ -47,13 +47,13 @@
 
   <!--タブコンテンツ-->
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+    <div class="tab-pane fade <% if @tab == 'post' %> show active<% end %>" id="post" role="tabpanel" aria-labelledby="post-tab">
       <% if @posts.present? %>
         <div class='jscroll-div'>
           <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
             <%= render "public/posts/index", posts: @posts %>
           </div>
-          <%= paginate @posts %>
+          <%= paginate @posts, params: {tab: 'post'} %>
         </div>
       <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
@@ -61,15 +61,13 @@
         </div>
        <% end %>
     </div>
-    
-    <div class="tab-pane fade justify-content-center" id="fav" role="tabpanel" aria-labelledby="fav-tab">
+
+    <div class="tab-pane fade <% if @tab == 'fav' %> show active<% end %>" id="fav" role="tabpanel" aria-labelledby="fav-tab">
       <% if @favorite_list.present? %>
-      <div class='jscroll-div'>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          <%= render "public/posts/index", posts: @favorite_list %>
-        </div>
-        <%= paginate @favorite_list %>
-      </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            <%= render "public/posts/index", posts: @favorite_list %>
+          </div>
+          <%= paginate @favorite_list, params: {tab: 'fav'} %>
       <% else %>
           <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
             お気に入りがありません
@@ -79,11 +77,11 @@
   </div>
 </div>
 
-<script>
+// <script>
   $('.jscroll-div').jscroll({
     contentSelector: '.jscroll-div',
     nextSelector: 'a.jscroll-next',
     loadingHtml: '読み込み中',
     padding: 10
   });
-</script>
+// </script>
