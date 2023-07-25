@@ -31,13 +31,18 @@
       <% end %>
     </div>
 
-    <!--投稿情報表示-->
-    <div class="row d-flex align-items-center flex-column">
-      <!--投稿時のテーマ-->
+    <!--投稿時のテーマ-->
+    <div class="row d-flex justify-content-center">
       <h4>Challenge Theme：<%= @post.theme %></h4>
-      <!--投稿の説明文-->
-      <p><%= @post.body %></p>
-      <!--投稿のタグ一覧-->
+    </div>
+    
+    <!--投稿の説明文-->
+    <div class="row d-flex justify-content-center text-wrap">
+      <p style="word-break: break-all;"><%= @post.body %></p>
+    </div>
+    
+    <!--投稿のタグ一覧-->
+    <div class="row d-flex justify-content-center">
       <% if @post_tags.present? %>
         <div class="d-flex align-items-center">
           <i class="fas fa-tag mr-1 show-tag-icon"></i>
@@ -46,7 +51,10 @@
           <% end %>
         </div>
       <% end %>
-      <!--投稿日時-->
+    </div>
+    
+    <!--投稿日時-->
+    <div class="row d-flex justify-content-center">
       <small class="text-muted mt-2">posting date: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
     </div>
 

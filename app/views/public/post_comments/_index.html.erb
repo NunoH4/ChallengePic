@@ -17,7 +17,7 @@
         <span class="text-dark comment-member_name"><%= post_comment.member.name %></span>
         <span><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
       </div>
-      <div><%= post_comment.comment %></div>
+      <div style="word-break: break-all;"><%= post_comment.comment %></div>
       <% if post_comment.member == current_member %>
         <div class="d-flex justify-content-end">
           <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-outline-secondary btn-sm rounded-pill", remote: true, data: {"turbolinks" => false} %>
