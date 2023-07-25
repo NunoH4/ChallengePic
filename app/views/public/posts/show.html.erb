@@ -32,13 +32,15 @@
     </div>
 
     <!--投稿時のテーマ-->
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mt-3">
       <h4>Challenge Theme：<%= @post.theme %></h4>
     </div>
     
     <!--投稿の説明文-->
-    <div class="row d-flex justify-content-center text-wrap">
-      <p style="word-break: break-all;"><%= @post.body %></p>
+    <div class="row mt-2">
+      <div class="col d-flex justify-content-center">
+        <p style="word-break: break-all;"><%= @post.body %></p>
+      </div>
     </div>
     
     <!--投稿のタグ一覧-->
