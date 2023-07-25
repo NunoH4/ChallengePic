@@ -6,9 +6,9 @@
   <div class='row'>
     <span class="col text-right">
       <i class="fas fa-sort text-black-50 mr-1"></i>
-      <%= link_to '新しい順', search_tag_path(latest: "true"), class: "text-black-50 text-decoration-none soat" %>
-       <%= link_to '古い順', search_tag_path(old: "true"), class: "text-black-50 text-decoration-none soat" %>
-       <%= link_to 'お気に入り順', search_tag_path(most_favorited: "true"), class: "text-black-50 text-decoration-none soat" %>
+      <%= link_to '新しい順', search_tag_path(tag_id: @tag.id, latest: "true"), class: "text-black-50 text-decoration-none soat" %>
+       <%= link_to '古い順', search_tag_path(tag_id: @tag.id, old: "true"), class: "text-black-50 text-decoration-none soat" %>
+       <%= link_to 'お気に入り順', search_tag_path(tag_id: @tag.id, most_favorited: "true"), class: "text-black-50 text-decoration-none soat" %>
     </span>
   </div>
   

@@ -7,7 +7,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @tag_list=Tag.all
     if params[:latest] #新しい順
       @posts = Post.latest.page(params[:page]).per(6)
     elsif params[:old] #古い順
@@ -32,7 +31,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice:'投稿が完了しました'
+      redirect_to post_path(@post), notice:"投稿が完了しました"
     else
       @daily_theme = Challenge.last&.theme
       render :new
@@ -69,10 +68,16 @@ class Public::PostsController < ApplicationController
   end
   
   def search_tag
-    # 　検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
-    # 　検索されたタグに紐づく投稿を表示
-    @posts = @tag.posts
+    if params[:latest] #新しい順
+      @posts = @tag.posts.latest.page(params[:page]).per(6)
+    elsif params[:old] #古い順
+      @posts = @tag.posts.old.page(params[:page]).per(6)
+    elsif params[:most_favorited] #お気に入り順
+      @posts = @tag.posts.most_favorited.page(params[:page]).per(6)
+    else
+      @posts = @tag.posts.order(created_at: :desc).page(params[:page]).per(6) #デフォルトを新着順に
+    end
   end
   
   private
@@ -81,7 +86,7 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:image, :body, :name) #:nameはTagのカラム
   end
   
-  def image_resize(params)
+  def image_resize(params) #保存前にリサイズする
     if params[:image]
       params[:image].tempfile = ImageProcessing::MiniMagick.source(params[:image].tempfile).resize_to_limit(800, 800).call
     end
