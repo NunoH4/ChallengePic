@@ -5,6 +5,7 @@
   </div>
 
   <%= form_with model: @member do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="form-group">
       <label for="profile_image">プロフィール画像</label>
       <%= f.file_field :profile_image, class: "form-control-file profile_image", accept: 'image/*' %>
