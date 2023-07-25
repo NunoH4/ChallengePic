@@ -2,12 +2,13 @@
   <div class='row'>
     <h2 class="mx-auto">POSTS LIST</h2>
   </div>
+
+  <div class='row'>
+    <%= render "public/posts/soat" %>
+  </div>
   
   <div class='jscroll-div'>
-    <div class='row'>
-      <%= render "public/posts/soat" %>
-    </div>
-    
+
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
       <%= render "public/posts/index", posts: @posts %>
     </div>
@@ -15,15 +16,11 @@
   </div>
 </div>
 
-
 <script>
-  $(document).on('turbolinks:load', function() {
-    console.log('テストテスト')
-    $('.jscroll-div').jscroll({ // 追加したdivのclass名と合わせる
-      contentSelector: '.jscroll', 
-      nextSelector: '.next a',  // 次ページリンクのセレクタ
-      loadingHtml: '読み込み中',
-      padding: 10
-    });
+  $('.jscroll-div').jscroll({
+    contentSelector: '.jscroll-div',
+    nextSelector: 'a.jscroll-next',
+    loadingHtml: '読み込み中',
+    padding: 10
   });
 </script>

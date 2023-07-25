@@ -3,9 +3,9 @@ class Public::MembersController < ApplicationController
   
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts.page(params[:page]).per(6)
+    @posts = @member.posts.order(created_at: :desc).page(params[:page]).per(6) #デフォルトを新着順に
     favorites = Favorite.where(member_id: @member.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    @favorite_list = Post.where(id: favorites).page(params[:page]).per(6)  # postsテーブルからお気に入り登録済みのレコードを取得
+    @favorite_list = Post.where(id: favorites).order(created_at: :desc).page(params[:page]).per(6)  # postsテーブルからお気に入り登録済みのレコードを取得
   end
 
   def edit

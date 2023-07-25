@@ -49,10 +49,12 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
       <% if @posts.present? %>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          <%= render "public/posts/index", posts: @posts %>
+        <div class='jscroll-div'>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            <%= render "public/posts/index", posts: @posts %>
+          </div>
+          <%= paginate @posts %>
         </div>
-        <%= paginate @posts %>
       <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
           投稿がまだありません
@@ -62,15 +64,26 @@
     
     <div class="tab-pane fade justify-content-center" id="fav" role="tabpanel" aria-labelledby="fav-tab">
       <% if @favorite_list.present? %>
+      <div class='jscroll-div'>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
           <%= render "public/posts/index", posts: @favorite_list %>
         </div>
         <%= paginate @favorite_list %>
+      </div>
       <% else %>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
-          お気に入りがありません
-        </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+            お気に入りがありません
+          </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $('.jscroll-div').jscroll({
+    contentSelector: '.jscroll-div',
+    nextSelector: 'a.jscroll-next',
+    loadingHtml: '読み込み中',
+    padding: 10
+  });
+</script>

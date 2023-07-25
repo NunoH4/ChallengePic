@@ -22,10 +22,12 @@
   <!--タブコンテンツ-->
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          <%= render "public/posts/index", posts: @posts %>
-        </div>
-        <%= paginate @posts %>
+          <div class='jscroll-div'>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+              <%= render "public/posts/index", posts: @posts %>
+            </div>
+            <%= paginate @posts %>
+          </div>
     </div>
     <div class="tab-pane fade" id="ranking" role="tabpanel" aria-labelledby="ranking-tab">
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
@@ -34,3 +36,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.jscroll-div').jscroll({
+    contentSelector: '.jscroll-div',
+    nextSelector: 'a.jscroll-next',
+    loadingHtml: '読み込み中',
+    padding: 10
+  });
+</script>

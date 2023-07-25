@@ -33,3 +33,7 @@ header {
   font-weight: bold;
 }
 
+.jscroll-div .pagination{
+  display: none;
+}
+
