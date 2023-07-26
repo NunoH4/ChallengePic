@@ -16,23 +16,17 @@
   <header>
     <nav class="navbar navbar-expand">
       <div class="navbar-brand">
-         <%= link_to image_tag("logo.jpg", alt: "ロゴ"), "/" %>
+         <% if admin_signed_in? %>
+          <%= link_to image_tag("logo.jpg", alt: "ロゴ"), admin_root_path %>
+        <% else %>
+          <%= link_to image_tag("logo.jpg", alt: "ロゴ"), "/" %>
+        <% end %>
         <span class="head-text head-about">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
       </div>
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-          <!--検索フォーム-->
-          <li class="nav-item">
-            <%= render 'layouts/search' %>
-          </li>
           <li class="nav-link">
-            <%= link_to posts_path, class: "head-text text-decoration-none" do %>
-            <i class="far fa-images"></i>
-            投稿一覧
-            <% end %>
-          </li>
-          <li class="nav-link">
-            <%= link_to admin_members_path, class: "head-text text-decoration-none" do %>
+            <%= link_to admin_root_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-user"></i>
             ユーザー管理
             <% end %>

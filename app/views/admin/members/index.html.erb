@@ -20,11 +20,11 @@
             <%= member.id %>
           </td>
           <td>
-              <% if member.profile_image.attached? %>
-                <%= image_tag member.profile_image.variant(resize: "80x80"), class: "rounded-circle" %>
-              <% else %>
-                <%= image_tag "no_image.jpg", class: "rounded-circle", size: "80x80" %>
-              <% end %>
+            <% if member.profile_image.attached? %>
+              <%= image_tag member.profile_image.variant(resize: "80x80"), class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", class: "rounded-circle", size: "80x80" %>
+            <% end %>
             <%= link_to member_path(member) do %>
               <%= member.name %>
             <% end %>
