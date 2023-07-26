@@ -33,6 +33,10 @@ header {
   font-size: 25px;
 }
 
+.show-tag-icon {
+  color: #6C757D;
+}
+
 .comment-member_name {
   font-weight: bold;
 }
