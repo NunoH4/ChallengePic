@@ -3,7 +3,7 @@ class Admin::MembersController < ApplicationController
   before_action :ensure_member, only: [:show, :edit, :update]
   
   def index
-    @members = Member.all
+    @members = Member.all.page(params[:page]).per(20)
   end
 
   def show

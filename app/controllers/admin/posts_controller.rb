@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   
   def index
     @member = Member.find(params[:member_id])
-    @posts = @member.posts
+    @posts = @member.posts.page(params[:page]).per(25)
   end
   
   def destroy

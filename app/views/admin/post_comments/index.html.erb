@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <% @post_comments.each do |post_comment| %>
-            <tr>
+            <tr class="text-center">
               <td><%= post_comment.id %></td>
               <td style="word-break: break-all;"><%= post_comment.comment %></td>
               <td><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
@@ -29,6 +29,9 @@
           <% end %>
         </tbody>
       </table>
+      <div class="row justify-content-center">
+        <%= paginate @post_comments %>
+      </div>
     <% else %>
       <p class="mt-3">コメントはありません</p>
     <% end %>
