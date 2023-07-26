@@ -44,7 +44,7 @@
           <i class="fas fa-sort text-black-50 mr-1"></i>
           <%= link_to '新しい順', search_path(latest: "true", search: params[:search], word: params[:word], range: params[:range]), class: "text-black-50 text-decoration-none soat" %>
            <%= link_to '古い順', search_path(old: "true", search: params[:search], word: params[:word], range: params[:range]), class: "text-black-50 text-decoration-none soat" %>
-           <%= link_to 'お気に入り順', search_path(most_favorited: "true", search: params[:search], word: params[:word], range: params[:range]), class: "text-black-50 text-decoration-none soat" %>
+           <%= link_to 'お気に入り数順', search_path(most_favorited: "true", search: params[:search], word: params[:word], range: params[:range]), class: "text-black-50 text-decoration-none soat" %>
         </span>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
