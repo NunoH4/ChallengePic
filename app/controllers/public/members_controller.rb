@@ -1,5 +1,5 @@
 class Public::MembersController < ApplicationController
-  before_action :correct_member, only: [:update, :edit, :leave, :withdrawal]
+  before_action :is_matching_login_member, only: [:update, :edit, :leave, :withdrawal]
 
   def show
     @member = Member.find(params[:id])
@@ -38,9 +38,10 @@ class Public::MembersController < ApplicationController
     params.require(:member).permit(:name, :introduction, :profile_image)
   end
 
-  def correct_member
+  def is_matching_login_member
     @member = Member.find(params[:id])
     unless @member == current_member
+      flash[:error] = "権限がありません"
       redirect_to member_path(current_member)
     end
   end
