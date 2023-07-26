@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_member!, except: [:index, :show, :search_tag]
+  before_action :is_matching_login_member, only: [:edit, :update, :destroy]
   
   def new
     @daily_theme = Challenge.last&.theme
@@ -91,5 +92,13 @@ class Public::PostsController < ApplicationController
       params[:image].tempfile = ImageProcessing::MiniMagick.source(params[:image].tempfile).resize_to_limit(800, 800).call
     end
     params
+  end
+  
+  def is_matching_login_member
+    post = Post.find(params[:id])
+    unless post.member.id == current_member.id
+      flash[:error] = "権限がありません"
+      redirect_to post_path(post)
+    end
   end
 end
