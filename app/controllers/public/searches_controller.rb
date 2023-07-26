@@ -13,7 +13,7 @@ class Public::SearchesController < ApplicationController
         elsif params[:most_favorited] #お気に入り順
           @posts = Post.looks(params[:search], params[:word]).most_favorited.page(params[:page]).per(6)
         else
-          @posts = Post.looks(params[:search], params[:word]).order(created_at: :desc).page(params[:page]).per(6) #デフォルトを新着順に
+          @posts = Post.looks(params[:search], params[:word]).order(created_at: :desc).page(params[:page]).per(6)
         end
       else
         @tags = Tag.looks(params[:search], params[:word])

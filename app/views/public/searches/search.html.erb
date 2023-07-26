@@ -6,7 +6,10 @@
   <!--検索対象モデルがMemberの場合 -->
   <% if @range == "ユーザー" %>
     <% if @members.empty? %>
-      <div class="text-center">検索結果がありませんでした</div>
+      <div class="mt-5 text-center">検索結果がありませんでした</div>
+      <div class="mt-5 d-flex justify-content-center">
+        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+      </div>
     <% else %>
       <table class="table">
       <tbody>
@@ -31,7 +34,10 @@
   <!--検索対象モデルがChallengeの場合 -->
   <% elsif @range == "Challenge Theme" %>
     <% if @posts.empty? %>
-      <div class="text-center">検索結果がありませんでした</div>
+      <div class="mt-5 text-center">検索結果がありませんでした</div>
+      <div class="mt-5 d-flex justify-content-center">
+        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+      </div>
     <% else %>
       <div class='row'>
         <span class="col text-right">
@@ -49,7 +55,10 @@
   <!--検索対象モデルがタグの場合 -->
   <% else %>
     <% if @tags.empty? %>
-      <div>検索結果がありませんでした</div>
+      <div class="mt-5 text-center">検索結果がありませんでした</div>
+      <div class="mt-5 d-flex justify-content-center">
+        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+      </div>
     <% else %>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         <% @tags.each do |tag| %>
