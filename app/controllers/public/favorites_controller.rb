@@ -6,7 +6,7 @@ class Public::FavoritesController < ApplicationController
     if @post.member_id != current_member.id   # 投稿者本人以外に限定
       @favorite = Favorite.create(member_id: current_member.id, post_id: @post.id)
     else
-      @error_message = "投稿者自身はお気に入り登録できません。"
+      @error_message = "投稿者自身はお気に入り登録できません"
     end
   end
   

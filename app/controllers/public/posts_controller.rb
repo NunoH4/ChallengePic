@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice:"投稿が完了しました"
+      redirect_to post_path(@post), flash: {success: "投稿が完了しました"}
     else
       @daily_theme = Challenge.last&.theme
       render :new
@@ -55,7 +55,7 @@ class Public::PostsController < ApplicationController
       relation.delete
       end
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice: "投稿を更新しました"
+      redirect_to post_path(@post), flash: {success: "投稿の編集が完了しました"}
     else
       render :edit
     end
@@ -64,7 +64,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to root_path
+    redirect_to root_path, flash: {success: "投稿の削除が完了しました"}
   end
   
   def search_tag

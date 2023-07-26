@@ -15,7 +15,7 @@ class Public::MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to member_path(@member), notice: "ユーザー情報を更新しました"
+      redirect_to member_path(@member), flash: {success: "ユーザー情報を更新しました"}
     else
       render :edit
     end
@@ -29,8 +29,7 @@ class Public::MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.update(is_deleted: true) # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    redirect_to root_path, flash: {success: "退会処理を実行しました"}
   end
 
   private
