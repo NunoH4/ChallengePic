@@ -1,1 +1,5 @@
-$("#comments_area").html("<%= j( render "public/post_comments/index", post_comment: @post_comment, post: @post) %>")
+<% if @post_comment.errors.any? %>
+  $("#post_comment_errors").html("<%= j( render "layouts/error_messages", model: @post_comment) %>");
+<% else %>
+  $("#comments_area").html("<%= j( render "public/post_comments/index", post_comment: @post_comment, post: @post) %>")
+<% end %>

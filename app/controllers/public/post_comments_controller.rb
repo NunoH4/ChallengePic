@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_member!
+  before_action :is_matching_login_member, only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -18,5 +19,13 @@ class Public::PostCommentsController < ApplicationController
 
   def post_comment_params
     params.require(:post_comment).permit(:comment)
+  end
+
+  def is_matching_login_member
+    post_comment = PostComment.find(params[:id])
+    unless post_comment.member.id == current_member.id
+      flash[:error] = "権限がありません"
+      redirect_to post_path(post_comment.post)
+    end
   end
 end
