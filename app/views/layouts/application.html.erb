@@ -21,6 +21,16 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
+          <!--検索フォーム-->
+          <li class="nav-item">
+            <%= render 'layouts/search' %>
+          </li>
+          <li class="nav-link">
+            <%= link_to posts_path, class: "head-text text-decoration-none" do %>
+            <i class="far fa-images"></i>
+            投稿一覧
+            <% end %>
+          </li>
           <li class="nav-link">
             <%= link_to admin_members_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-user"></i>

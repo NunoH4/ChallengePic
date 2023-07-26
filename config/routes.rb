@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :members, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:destroy]
-    resources :post_comments, only: [:destroy]
+    resources :members, only: [:index, :show, :edit, :update] do
+      resources :posts, only: [:index, :destroy]
+      resources :post_comments, only: [:index, :destroy]
+    end
   end
 
   devise_for :members,skip: [:passwords], controllers: {
