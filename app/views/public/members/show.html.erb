@@ -1,22 +1,22 @@
 <div class="container mt-5">
-  <!--ユーザーアイコン-->
-  <div class="row d-flex justify-content-center">
-    <% if @member.profile_image.attached? %>
-      <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "rounded-circle" %>
-    <% else %>
-      <%= image_tag "no_image.jpg", class: "rounded-circle", size: '100x100' %>
-    <% end %>
-  </div>
-
-  <!--ユーザー名-->
-  <div class="row mt-1 d-flex justify-content-center">
-    <h3><%= @member.name %></h3>
-  </div>
-
-  <!--自己紹介-->
-  <div class="row">
-    <div class="col d-flex justify-content-center">
-      <p style="word-break: break-all;"><%= @member.introduction %></p>
+  
+  <!--ユーザー情報-->
+  <div class="row justify-content-center text-center">
+    <!--ユーザーアイコン-->
+    <div class="col-12">
+      <% if @member.profile_image.attached? %>
+        <%= image_tag @member.profile_image.variant(resize: '100x100'), class: "d-inline rounded-circle mx-auto" %>
+      <% else %>
+        <%= image_tag "no_image.jpg", class: "d-inline rounded-circle mx-auto", size: '100x100' %>
+      <% end %>
+    </div>
+    <!--ユーザー名-->
+    <div class="col-12">
+      <h3 class="font-weight-bold"><%= @member.name %></h3>
+    </div>
+    <!--自己紹介-->
+    <div class="col-12">
+      <p><%= @member.introduction %></p>
     </div>
   </div>
 

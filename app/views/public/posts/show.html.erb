@@ -11,21 +11,19 @@
       </div>
     </div>
 
-    <!--投稿ユーザーアイコン-->
-    <div class="row d-flex justify-content-center">
+    <!--投稿者情報-->
+    <div class="row justify-content-center text-center">
       <%= link_to member_path(@post.member.id), class: "text-decoration-none" do %>
-        <% if @post.member.profile_image.attached? %>
-          <%= image_tag @post.member.profile_image.variant(resize: '80x80'), class: "rounded-circle" %>
-        <% else %>
-          <%= image_tag "no_image.jpg", class: "rounded-circle", size: '80x80' %>
-        <% end %>
-      <% end %>
-    </div>
-    
-     <!--投稿ユーザー名-->
-    <div class="row d-flex justify-content-center">
-      <%= link_to member_path(@post.member.id), class: "text-decoration-none" do %>
-        <div class="row mt-1 d-flex justify-content-center text-dark">
+        <!--投稿ユーザーアイコン-->
+        <div class="col-12">
+          <% if @post.member.profile_image.attached? %>
+            <%= image_tag @post.member.profile_image.variant(resize: '80x80'), class: "d-inline rounded-circle mx-auto" %>
+          <% else %>
+            <%= image_tag "no_image.jpg", class: "d-inline rounded-circle mx-auto", size: '80x80' %>
+          <% end %>
+        </div>
+        <!--投稿ユーザー名-->
+        <div class="col-12 text-decoration-none text-dark">
           <h5><%= @post.member.name %></h5>
         </div>
       <% end %>
