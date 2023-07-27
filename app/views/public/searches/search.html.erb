@@ -8,7 +8,7 @@
     <% if @members.empty? %>
       <div class="mt-5 text-center">検索結果がありませんでした</div>
       <div class="mt-5 d-flex justify-content-center">
-        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+        <%= image_tag 'no_search.png', class: 'img-fluid search-bg', width: '500px' %>
       </div>
     <% else %>
       <table class="table">
@@ -36,7 +36,7 @@
     <% if @posts.empty? %>
       <div class="mt-5 text-center">検索結果がありませんでした</div>
       <div class="mt-5 d-flex justify-content-center">
-        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+        <%= image_tag 'no_search.png', class: 'img-fluid search-bg', width: '500px' %>
       </div>
     <% else %>
       <div class='row'>
@@ -57,7 +57,7 @@
     <% if @tags.empty? %>
       <div class="mt-5 text-center">検索結果がありませんでした</div>
       <div class="mt-5 d-flex justify-content-center">
-        <%= image_tag 'no_search.png', class: 'search-bg', height: '300px' %>
+        <%= image_tag 'no_search.png', class: 'img-fluid search-bg', width: '500px' %>
       </div>
     <% else %>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
