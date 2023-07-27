@@ -24,7 +24,7 @@
 後ほど作成予定
 
 ## 開発環境
-- OS：Microsoft Windows
+- OS：Amazon Linux 2
 - 言語：HTML, CSS, JavaScript, Ruby, SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
@@ -35,5 +35,5 @@
 - Font Awesome (https://fontawesome.com/)
 
 フリーイラスト素材として以下を使用しています
-- Isometric (https://isometric.online/)
+- Unsplash (https://unsplash.com/ja)
 - unDraw (https://undraw.co/)
