@@ -1,5 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :is_matching_login_member, only: [:update, :edit, :leave, :withdrawal]
+  before_action :ensure_guest_member, only: [:edit]
 
   def show
     @member = Member.find(params[:id])
@@ -45,5 +46,10 @@ class Public::MembersController < ApplicationController
       redirect_to member_path(current_member)
     end
   end
-
+  
+  def ensure_guest_member
+   if current_member.guest_member?
+     redirect_to member_path(current_member), flash: {warning: "ゲストユーザーはプロフィール編集できません。"}
+   end
+  end
 end

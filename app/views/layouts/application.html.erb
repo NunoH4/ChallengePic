@@ -21,7 +21,6 @@
         <% else %>
           <%= link_to image_tag("logo.jpg", alt: "ロゴ"), "/" %>
         <% end %>
-        <span class="head-text head-about">日替わりのテーマに沿った写真を投稿するコミュニティサイト</span>
       </div>
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
@@ -105,6 +104,12 @@
             <%= link_to new_member_session_path, class: "head-text text-decoration-none" do %>
             <i class="fas fa-sign-in-alt"></i>
             ログイン
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to members_guest_sign_in_path, class: "head-text text-decoration-none" do %>
+            <i class="fas fa-sign-in-alt"></i>
+            ゲストログイン
             <% end %>
           </li>
         <% end %>

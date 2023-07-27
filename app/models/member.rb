@@ -31,4 +31,17 @@ class Member < ApplicationRecord
     super && (is_deleted == false)  # is_deletedがfalseならtrueを返すようにする
   end
   
+
+  # ゲストログイン機能
+  GUEST_MEMBER_EMAIL = "guest@example.com"
+  def self.guest
+    find_or_create_by!(email: "guest@example.com") do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guest"
+    end
+  end
+  
+  def guest_member?
+    email == GUEST_MEMBER_EMAIL
+  end
 end
