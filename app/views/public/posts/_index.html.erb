@@ -12,7 +12,7 @@
           </div>
           <h5 class="card-text">Challenge Theme:</h5>
           <h5 class="card-text"><%= post.theme %></h5>
-          <p class="card-text">user:<%= link_to post.member.name, member_path(post.member), class: "text-dark text-decoration-none" %></p>
+          <p class="card-text">user: <%= link_to post.member.name, member_path(post.member), class: "text-dark text-decoration-none" %></p>
           <small class="text-muted">posting date: <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
         </div>
     </div>
