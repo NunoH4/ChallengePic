@@ -19,9 +19,9 @@
     <!--ロゴ-->
     <div class="navbar-brand">
       <% if admin_signed_in? %>
-        <%= link_to image_tag("logo.jpg", alt: "ロゴ"), admin_root_path %>
+        <%= link_to image_tag("logo.png", alt: "ロゴ", width: '300px'), admin_root_path %>
       <% else %>
-        <%= link_to image_tag("logo.jpg", alt: "ロゴ"), "/" %>
+        <%= link_to image_tag("logo.png", alt: "ロゴ", width: '300px'), "/" %>
       <% end %>
     </div>
     <!--ハンバーガーメニューアイコン-->
