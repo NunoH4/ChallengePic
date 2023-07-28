@@ -19,7 +19,7 @@ class Admin::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to admin_member_path(@member.id), flash: {success: "ユーザー情報を更新しました"}
+      redirect_to admin_member_path(@member.id), flash: {success: "ユーザー情報を更新しました。"}
     else
       render :edit
     end

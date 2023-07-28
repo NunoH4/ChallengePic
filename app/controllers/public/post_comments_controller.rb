@@ -24,7 +24,7 @@ class Public::PostCommentsController < ApplicationController
   def is_matching_login_member
     post_comment = PostComment.find(params[:id])
     unless post_comment.member.id == current_member.id
-      flash[:error] = "権限がありません"
+      flash[:error] = "権限がありません。"
       redirect_to post_path(post_comment.post)
     end
   end

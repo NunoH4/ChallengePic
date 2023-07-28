@@ -56,7 +56,7 @@ class Public::PostsController < ApplicationController
       relation.delete
       end
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), flash: {success: "投稿の編集が完了しました"}
+      redirect_to post_path(@post), flash: {success: "投稿の編集が完了しました。"}
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to root_path, flash: {success: "投稿の削除が完了しました"}
+    redirect_to root_path, flash: {success: "投稿の削除が完了しました。"}
   end
   
   def search_tag
@@ -97,7 +97,7 @@ class Public::PostsController < ApplicationController
   def is_matching_login_member
     post = Post.find(params[:id])
     unless post.member.id == current_member.id
-      flash[:error] = "権限がありません"
+      flash[:error] = "権限がありません。"
       redirect_to post_path(post)
     end
   end
