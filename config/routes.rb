@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       get :favorites, on: :collection
       get "leave", on: :member
       patch "withdrawal", on: :member
+        resource :relationships, only: [:create, :destroy]
+        get 'followings' => 'relationships#followings', as: 'followings'
+        get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
