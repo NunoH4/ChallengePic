@@ -1,4 +1,5 @@
 # ChallengePic
+![41824515-2017bcc4abda8aade5d6cc9e6e2d97b9](https://github.com/NunoH4/ChallengePic/assets/132256457/357ac17f-21f3-4f7d-b2cf-bee5a4a76644)
 
 ## サイト概要
 
@@ -20,8 +21,8 @@
 - 自分が撮影した写真を他のユーザーにも見てほしい時
 - 同じお題に基づいて撮影した他のユーザーの写真を見たい時
 
-## 設計書
-後ほど作成予定
+## ER図
+![ChallengePic_ER図](https://github.com/NunoH4/ChallengePic/assets/132256457/81e78e69-a7c3-49c1-b826-79d4cfb28bb4)
 
 ## 開発環境
 - OS：Amazon Linux 2
