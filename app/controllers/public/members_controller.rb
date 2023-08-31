@@ -8,6 +8,7 @@ class Public::MembersController < ApplicationController
     favorites = Favorite.where(member_id: @member.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @favorite_list = Post.where(id: favorites).order(created_at: :desc).page(params[:page]).per(12)  # postsテーブルからお気に入り登録済みのレコードを取得
     @tab = params[:tab] || 'post'
+    @following = @member.followings
   end
 
   def edit
