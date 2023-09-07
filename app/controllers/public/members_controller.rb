@@ -9,6 +9,7 @@ class Public::MembersController < ApplicationController
     @favorite_list = Post.where(id: favorites).order(created_at: :desc).page(params[:page]).per(12)  # postsテーブルからお気に入り登録済みのレコードを取得
     @tab = params[:tab] || 'post'
     @following = @member.followings
+    @followers = @member.followers
   end
 
   def edit

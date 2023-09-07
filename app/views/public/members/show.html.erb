@@ -55,6 +55,9 @@
     <li class="nav-item" role="presentation">
       <a class="nav-link text-black-50 font-weight-bold tab <% if @tab == 'following' %> active<% end %>" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="<%= @tab == 'following' ? 'true' : 'false' %>">フォロー中</a>
     </li>
+        <li class="nav-item" role="presentation">
+      <a class="nav-link text-black-50 font-weight-bold tab <% if @tab == 'followers' %> active<% end %>" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="<%= @tab == 'followers' ? 'true' : 'false' %>">フォロワー</a>
+    </li>
   </ul>
 
   <!--ボーダーライン-->
@@ -112,6 +115,31 @@
         <p>フォロー中のユーザーはいません</p>
       <% end %>
     </div>
+    
+    <div class="tab-pane fade <% if @tab == 'followers' %> show active<% end %>" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+      <% if @followers.exists? %>
+        <% @followers.each do |member| %>
+            <div class="d-flex mb-2 border-bottom">
+              <div>
+                <% if member.profile_image.attached? %>
+                  <%= image_tag member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                <% end %>
+              </div>
+              <div class="ms-2 flex-grow-1 ml-">
+                <div>
+                  <span class="text-dark comment-member_name"><%= member.name %></span>
+                </div>
+                <div style="word-break: break-all;"><%= member.introduction.truncate(40) %></div>
+              </div>
+            </div>
+        <% end %>
+      <% else %>
+        <p>フォローされているユーザーはいません</p>
+      <% end %>
+    </div>
+    
   </div>
 </div>
 <script>
