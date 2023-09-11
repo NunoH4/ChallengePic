@@ -17,6 +17,12 @@ class Public::HomesController < ApplicationController
                         .group(:id)
                         .order('COUNT(favorites.id) DESC')
                         .limit(3)
+                        
+    if current_member
+      @tl_posts = Post.order("created_at DESC").where(member_id: [*current_member.following_ids])
+    else
+      @tl_posts = []
+    end
   end
 
   def guideline
