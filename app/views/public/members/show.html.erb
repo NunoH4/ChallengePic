@@ -100,21 +100,27 @@
             <div class="d-flex mb-2 border-bottom">
               <div>
                 <% if member.profile_image.attached? %>
-                  <%= image_tag member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                  <%= link_to member_path(member) do %>
+                    <%= image_tag member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                  <% end %>
                 <% else %>
-                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                  <%= link_to member_path(member) do %>
+                    <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="ms-2 flex-grow-1 ml-">
                 <div>
-                  <span class="text-dark comment-member_name"><%= member.name %></span>
+                  <%= link_to member.name, member_path(member), class: "text-dark comment-member_name text-decoration-none" %>
                 </div>
                 <div style="word-break: break-all;"><%= member.introduction.truncate(40) %></div>
               </div>
             </div>
         <% end %>
       <% else %>
-        <p>フォロー中のユーザーはいません</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+          フォロー中のユーザーはいません
+        </div>
       <% end %>
     </div>
     
@@ -124,21 +130,27 @@
             <div class="d-flex mb-2 border-bottom">
               <div>
                 <% if member.profile_image.attached? %>
-                  <%= image_tag member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                  <%= link_to member_path(member) do %>
+                    <%= image_tag member.profile_image.variant(resize: '40x40'), class: "rounded-circle" %>
+                  <% end %>
                 <% else %>
-                  <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                  <%= link_to member_path(member) do %>
+                    <%= image_tag "no_image.jpg", class: "rounded-circle", size: '40x40' %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="ms-2 flex-grow-1 ml-">
                 <div>
-                  <span class="text-dark comment-member_name"><%= member.name %></span>
+                  <%= link_to member.name, member_path(member), class: "text-dark comment-member_name text-decoration-none" %>
                 </div>
                 <div style="word-break: break-all;"><%= member.introduction.truncate(40) %></div>
               </div>
             </div>
         <% end %>
       <% else %>
-        <p>フォローされているユーザーはいません</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+          フォローされているユーザーはいません
+        </div>
       <% end %>
     </div>
     
