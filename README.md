@@ -30,6 +30,7 @@
   - お気に入り機能
   - タグ機能
   - 検索機能
+  - フォロー機能
 - 管理者側
   - ログイン、ログアウト機能
   - ユーザーの一覧表示、詳細表示、編集機能
@@ -37,7 +38,7 @@
   - コメントの一覧表示、詳細表示、削除機能
 
 ## ER図
-![ChallengePic_ER図](https://github.com/NunoH4/ChallengePic/assets/132256457/81e78e69-a7c3-49c1-b826-79d4cfb28bb4)
+![ChallengePic_ER図](https://github.com/NunoH4/ChallengePic/assets/132256457/957b7e56-4a60-4d1d-a2ea-319f3b602569)
 
 ## 開発環境
 - OS：Amazon Linux 2
