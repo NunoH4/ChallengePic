@@ -113,7 +113,7 @@
                 <div>
                   <%= link_to member.name, member_path(member), class: "text-dark comment-member_name text-decoration-none" %>
                 </div>
-                <div style="word-break: break-all;"><%= member.introduction.truncate(40) %></div>
+                <div style="word-break: break-all;"><%= member.introduction&.truncate(40) || "" %></div>
               </div>
             </div>
         <% end %>
@@ -143,7 +143,7 @@
                 <div>
                   <%= link_to member.name, member_path(member), class: "text-dark comment-member_name text-decoration-none" %>
                 </div>
-                <div style="word-break: break-all;"><%= member.introduction.truncate(40) %></div>
+                <div style="word-break: break-all;"><%= member.introduction&.truncate(40) || "" %></div>
               </div>
             </div>
         <% end %>
